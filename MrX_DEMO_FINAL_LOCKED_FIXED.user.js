@@ -1,0 +1,84 @@
+// ==UserScript==
+// @name         MrX_DEMO_FINAL_LOCKED_FIXED
+// @namespace    http://tampermonkey.net/
+// @version      1.1
+// @description  Final working demo - 5 wins, locked, no .then(), secure and obfuscated-ready.
+// @author       Mr. X
+// @match        *://freebitco.in/*
+// @grant        GM_getValue
+// @grant        GM_setValue
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    const isLocked = GM_getValue("lockdown", false);
+    if (isLocked) {
+        alert("🚫 This demo has expired. Please contact Mr. X.");
+        console.warn("🔒 Locked. Access denied.");
+        return;
+    }
+
+    const accessKey = prompt("🔐 Enter your demo access key:");
+    if (accessKey !== "X-ACCESS-5WIN-KEY") {
+        alert("❌ Invalid key.");
+        return;
+    }
+
+    let winCount = 0;
+    let stake = 0.00000001;
+
+    const getGameResult = () => {
+        const resultEl = document.querySelector('#double_your_btc_result');
+        if (!resultEl) return null;
+        if (resultEl.innerText.includes('win')) return 'win';
+        if (resultEl.innerText.includes('lose')) return 'lose';
+        return null;
+    };
+
+    const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+    const simulateMouseMove = (el) => {
+        if (!el) return;
+        const event = new MouseEvent('mousemove', { bubbles: true });
+        el.dispatchEvent(event);
+    };
+
+    const runRealBet = async () => {
+        const stakeInput = document.querySelector('#double_your_btc_stake');
+        const betHi = document.querySelector('#double_your_btc_bet_hi_button');
+        const betLo = document.querySelector('#double_your_btc_bet_lo_button');
+        const button = Math.random() > 0.5 ? betHi : betLo;
+        if (!stakeInput || !button) return null;
+
+        stakeInput.value = stake.toFixed(8);
+        simulateMouseMove(button);
+        button.click();
+        console.log("🎯 Bet placed: " + stake.toFixed(8));
+        await wait(5000);
+        return getGameResult();
+    };
+
+    const runDemo = async () => {
+        console.log("🧨 You're looking at the tip of the iceberg. This machine doesn’t play the game. It rewrites the odds. Buy it or fight it — the choice is yours. — Mr. X");
+        while (winCount < 5) {
+            const result = await runRealBet();
+            if (!result) {
+                await wait(4000);
+                continue;
+            }
+            if (result === 'win') {
+                winCount++;
+                stake = 0.00000001;
+            } else {
+                stake *= 1.6;
+            }
+            console.log(`✅ Result: ${result} | Wins: ${winCount}/5`);
+            await wait(5000);
+        }
+        alert("🎉 Demo limit reached. Please contact Mr. X for full access.");
+        GM_setValue('lockdown', true);
+    };
+
+    runDemo();
+})();

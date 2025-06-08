@@ -80,7 +80,6 @@
       border-radius: 14px;
       margin-bottom: 50px;
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
-      transition: box-shadow 0.4s;
     }
 
     footer {
@@ -125,7 +124,13 @@
       line-height: 1.8;
       font-size: 1.05em;
       white-space: pre-line;
-      animation: fadeIn 1s forwards;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px rgba(255, 71, 71, 0.2); }
+      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
     }
   </style>
 </head>
@@ -177,6 +182,9 @@
     <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
   </footer>
 
+  <!-- 🔊 Ambient Sci-Fi Sound -->
+  <audio id="neuroSound" src="https://cdn.pixabay.com/audio/2023/03/06/audio_dcb6f82e79.mp3" preload="auto"></audio>
+
   <script>
     function toggleTheme() {
       const current = document.documentElement.getAttribute('data-theme');
@@ -191,7 +199,15 @@
 
     function toggleManifest() {
       const el = document.getElementById('manifest');
-      el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+      const sound = document.getElementById('neuroSound');
+      const isHidden = (el.style.display === 'none' || el.style.display === '');
+      el.style.display = isHidden ? 'block' : 'none';
+      if (isHidden) {
+        sound.currentTime = 0;
+        sound.play().catch(e => console.warn("🔇 Sound autoplay blocked:", e));
+      } else {
+        sound.pause();
+      }
     }
   </script>
 </body>

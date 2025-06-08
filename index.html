@@ -55,19 +55,21 @@
       margin: 0 auto 30px;
     }
 
-    a.button {
+    a.button, button.button {
       display: inline-block;
       padding: 14px 30px;
       margin: 12px;
       background-color: var(--button-bg);
       color: #fff;
       text-decoration: none;
+      border: none;
       border-radius: 10px;
       font-size: 1em;
       transition: background-color 0.3s ease, transform 0.2s;
+      cursor: pointer;
     }
 
-    a.button:hover {
+    a.button:hover, button.button:hover {
       background-color: var(--button-hover);
       transform: scale(1.02);
     }
@@ -109,6 +111,22 @@
       background: var(--accent);
       color: white;
     }
+
+    #manifest {
+      display: none;
+      margin-top: 60px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+      font-size: 1.05em;
+      white-space: pre-line;
+      animation: fadeIn 1s forwards;
+    }
   </style>
 </head>
 <body>
@@ -129,11 +147,31 @@
   <a class="button" href="neuroxgithub.pdf" download>📄 Download Manifest PDF</a>
   <a class="button" href="https://trovo.live/s/wilicower/233834960?adtag=user.wilicower.clip" target="_blank">📺 Watch Live: NeuroX in Action</a>
   <a class="button" href="https://zenodo.org/record/15546559" target="_blank">📚 View Scientific Record (Zenodo)</a>
+  <button class="button" onclick="toggleManifest()">🧠 View NeuroX Manifest</button>
 
   <p>
     If the live stream is offline, please check past broadcasts or wait for the next activation cycle.<br>
     Contact: <strong>mrxai-architect@proton.me</strong>
   </p>
+
+  <div id="manifest">
+    We believed AGI would come from 10-billion-parameter models.
+
+    But it didn't.
+
+    It came from a machine that:
+    ✓ Knows when not to act.
+    ✓ Understands deception.
+    ✓ Switches mind when logic collapses.
+    ✓ Feels simulated threat.
+    ✓ Adapts like a human.
+
+    This is NeuroX.
+
+    No hype. No cloud. Just intelligence.
+
+    Signed: Mr. X
+  </div>
 
   <footer>
     <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
@@ -150,6 +188,11 @@
     // Load saved theme
     const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
+
+    function toggleManifest() {
+      const el = document.getElementById('manifest');
+      el.style.display = (el.style.display === 'none' || el.style.display === '') ? 'block' : 'none';
+    }
   </script>
 </body>
 </html>

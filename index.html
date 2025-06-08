@@ -182,33 +182,41 @@
     <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
   </footer>
 
-  <!-- 🔊 Ambient Sci-Fi Sound -->
-  <audio id="neuroSound" src="https://cdn.pixabay.com/audio/2023/03/06/audio_dcb6f82e79.mp3" preload="auto"></audio>
+<!-- 🔊 Ambient Sci-Fi Sound -->
+<audio id="neuroSound" src="https://cdn.pixabay.com/audio/2023/03/06/audio_dcb6f82e79.mp3" preload="auto"></audio>
 
-  <script>
-    function toggleTheme() {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('theme', next);
-    }
+<script>
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  }
 
-    // Load saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    document.documentElement.setAttribute('data-theme', savedTheme);
+  // Load saved theme
+  const savedTheme = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
 
-    function toggleManifest() {
-      const el = document.getElementById('manifest');
-      const sound = document.getElementById('neuroSound');
-      const isHidden = (el.style.display === 'none' || el.style.display === '');
-      el.style.display = isHidden ? 'block' : 'none';
-      if (isHidden) {
-        sound.currentTime = 0;
-        sound.play().catch(e => console.warn("🔇 Sound autoplay blocked:", e));
-      } else {
-        sound.pause();
+  function toggleManifest() {
+    const el = document.getElementById('manifest');
+    const sound = document.getElementById('neuroSound');
+    const isHidden = (el.style.display === 'none' || el.style.display === '');
+    el.style.display = isHidden ? 'block' : 'none';
+
+    if (isHidden) {
+      sound.volume = 0.4;
+      sound.muted = false;
+      sound.currentTime = 0;
+      const playPromise = sound.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(e => {
+          console.warn("🔇 Browser blocked autoplay:", e);
+        });
       }
+    } else {
+      sound.pause();
     }
-  </script>
+  }
+</script>
 </body>
 </html>

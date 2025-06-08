@@ -4,64 +4,117 @@
   <meta charset="UTF-8">
   <title>NeuroX Manifest - Mr. X</title>
   <style>
+    :root {
+      --bg-color: #0a0a0a;
+      --text-color: #eaeaea;
+      --accent: #ff4747;
+      --button-bg: #ff4747;
+      --button-hover: #e63737;
+    }
+
+    [data-theme="light"] {
+      --bg-color: #f4f4f4;
+      --text-color: #111;
+      --accent: #d63031;
+      --button-bg: #d63031;
+      --button-hover: #c0392b;
+    }
+
     body {
-      background: #0a0a0a;
-      color: #eaeaea;
+      background: var(--bg-color);
+      color: var(--text-color);
       font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 60px 20px;
+      transition: background 0.5s, color 0.5s;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
     }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
     h1 {
       font-size: 3em;
       margin-bottom: 10px;
-      color: #ff4747;
+      color: var(--accent);
     }
+
     h2 {
       font-weight: normal;
       font-size: 1.5em;
-      color: #999;
+      color: #888;
       margin-bottom: 50px;
     }
+
     p {
       font-size: 1.1em;
       line-height: 1.6;
       max-width: 800px;
       margin: 0 auto 30px;
     }
+
     a.button {
       display: inline-block;
       padding: 14px 30px;
       margin: 12px;
-      background-color: #ff4747;
+      background-color: var(--button-bg);
       color: #fff;
       text-decoration: none;
       border-radius: 10px;
       font-size: 1em;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.2s;
     }
+
     a.button:hover {
-      background-color: #e63737;
+      background-color: var(--button-hover);
+      transform: scale(1.02);
     }
+
     img.preview {
       max-width: 90%;
       height: auto;
       border-radius: 14px;
       margin-bottom: 50px;
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+      transition: box-shadow 0.4s;
     }
+
     footer {
       margin-top: 60px;
       font-size: 0.9em;
       color: #666;
     }
+
     footer strong {
       color: #ccc;
+    }
+
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      border-radius: 50px;
+      padding: 6px 16px;
+      font-size: 0.9em;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+      background: var(--accent);
+      color: white;
     }
   </style>
 </head>
 <body>
 
-  <!-- Image Preview -->
+  <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Theme</button>
+
   <img src="Chatgpt.png" alt="NeuroX Preview" class="preview">
 
   <h1>NeuroX</h1>
@@ -86,5 +139,17 @@
     <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
   </footer>
 
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme');
+      const next = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+
+    // Load saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+  </script>
 </body>
 </html>

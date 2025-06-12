@@ -116,6 +116,17 @@
       z-index: 0;
       pointer-events: none;
     }
+    .qr-code {
+      margin-top: 20px;
+      max-width: 150px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(255, 71, 71, 0.7);
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .qr-code:hover {
+      transform: scale(1.1);
+    }
   </style>
 </head>
 <body>
@@ -130,9 +141,8 @@
     Architect of NeuroX • Pioneer of Deceptive-Resilient AI • AGI Thinker<br>
     <em>“I don’t guess. I decide.”</em>
   </p>
-  <a class="button" href="https://www.linkedin.com/in/mr-x-nazary-b12a4036a" target="_blank">
-    🔗 View Mr.X on LinkedIn
-  </a>
+  <!-- اینجا جای لینکدین بود، حالا QR واتس‌آپ -->
+  <img src="whatsapp.jpg" alt="WhatsApp QR Code" class="qr-code" title="Scan to contact on WhatsApp" />
 </section>
 
   <img src="Chatgpt.png" alt="NeuroX Preview" class="preview">
@@ -218,38 +228,51 @@
 
   function toggleDemo() {
     const el = document.getElementById('request-demo');
-    const isHidden = (el.style.display === 'none' || el.style.display === '');
-    el.style.display = isHidden ? 'block' : 'none';
+    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
 
-  const canvas = document.getElementById("rain");
-  const ctx = canvas.getContext("2d");
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-  const columns = Math.floor(canvas.width / 100);
-  const drops = Array(columns).fill(1);
-  const text = "Mr. X";
+  // Rain effect on canvas
+  const canvas = document.getElementById('rain');
+  const ctx = canvas.getContext('2d');
+  let drops = [];
+  const dropCount = 200;
 
-  function drawRain() {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    ctx.fillStyle = isLight ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.02)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = isLight ? "rgba(150, 30, 30, 0.4)" : "rgba(255, 71, 71, 0.3)";
-    ctx.font = "16px monospace";
-
-    for (let i = 0; i < drops.length; i++) {
-      ctx.fillText(text, i * 100, drops[i] * 20);
-      drops[i]++;
-      if (drops[i] * 20 > canvas.height || Math.random() > 0.95) {
-        drops[i] = 0;
-      }
-    }
-  }
-  setInterval(drawRain, 80);
-  window.addEventListener("resize", () => {
+  function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-  });
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function initDrops() {
+    drops = [];
+    for(let i=0; i<dropCount; i++) {
+      drops.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        length: 15 + Math.random()*20,
+        speed: 3 + Math.random()*4,
+        opacity: 0.2 + Math.random()*0.3
+      });
+    }
+  }
+  initDrops();
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.strokeStyle = 'rgba(255,71,71,0.5)';
+    ctx.lineWidth = 1;
+    for (const d of drops) {
+      ctx.beginPath();
+      ctx.moveTo(d.x, d.y);
+      ctx.lineTo(d.x, d.y + d.length);
+      ctx.stroke();
+      d.y += d.speed;
+      if (d.y > canvas.height) d.y = -d.length;
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
 </script>
 
 </body>

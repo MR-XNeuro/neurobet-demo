@@ -89,7 +89,7 @@
       background: var(--accent);
       color: white;
     }
-    #manifest {
+    #manifest, #request-demo {
       display: none;
       margin-top: 60px;
       padding: 30px;
@@ -107,7 +107,7 @@
     }
     @keyframes glow {
       from { box-shadow: 0 0 10px rgba(255, 71, 71, 0.2); }
-      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
+      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
     }
     canvas#rain {
       position: fixed;
@@ -135,15 +135,14 @@
   </a>
 </section>
 
-
   <img src="Chatgpt.png" alt="NeuroX Preview" class="preview">
 
   <h1>NeuroX</h1>
   <h2>Autonomous Intelligence Manifest by Mr. X</h2>
 
   <p>
-    NeuroX is not just another AI system. It thinks. It stops. It fears.  
-    It adapts like a living mind.  
+    NeuroX is not just another AI system. It thinks. It stops. It fears.  
+    It adapts like a living mind.  
     This is not a simulation. This is a declaration.
   </p>
 
@@ -151,9 +150,10 @@
   <a class="button" href="https://trovo.live/s/wilicower/233834960?adtag=user.wilicower.clip" target="_blank">📺 Watch Live: NeuroX in Action</a>
   <a class="button" href="https://zenodo.org/record/15546559" target="_blank">📚 View Scientific Record (Zenodo)</a>
   <button class="button" onclick="toggleManifest()">🧠 View NeuroX Manifest</button>
+  <button class="button" onclick="toggleDemo()">🧪 Request NeuroX Demo</button>
 
   <p>
-    If the live stream is offline, please check past broadcasts or wait for the next activation cycle.<br>
+    If the live stream is offline, please check past broadcasts in Video-Room/Past Streams or wait for the next activation cycle.<br>
     Contact: <strong>mrxai-architect@proton.me</strong>
   </p>
 
@@ -168,6 +168,22 @@
     Signed: Mr. X
   </div>
 
+  <div id="request-demo">
+    <strong>Request NeuroX Demo:</strong>
+
+    A demo version of NeuroX has been released exclusively for researchers, ethical hackers, and professional evaluators — targeted at the most deceptive online betting environments. This version only showcases 5% of NeuroX’s true capabilities and has been deployed against the highly adaptive bc.game platform.
+
+    NeuroX is a master AI with a core architecture capable of generalizing and adapting to any gambling site’s DOM and decision system. Its core is not shared, only the demo module is provided.
+
+    To receive access to the free demo:
+
+    ✉️ Send an email to <strong>mrxai-architect@proton.me</strong> with your profession, motivation, and how you intend to use the demo. If deemed suitable, you will receive the lightweight version.
+
+    Estimated engineering value of base logic alone: $500.
+
+    Think wisely.
+  </div>
+
   <footer>
     <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
   </footer>
@@ -176,7 +192,6 @@
 <audio id="neuroSound" src="neuroSound.mp3" preload="auto"></audio>
 
 <script>
-  // Theme toggle
   function toggleTheme() {
     const current = document.documentElement.getAttribute('data-theme');
     const next = current === 'light' ? 'dark' : 'light';
@@ -184,11 +199,9 @@
     localStorage.setItem('theme', next);
   }
 
-  // Load saved theme
   const savedTheme = localStorage.getItem('theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
 
-  // Manifest toggle + sound
   function toggleManifest() {
     const el = document.getElementById('manifest');
     const sound = document.getElementById('neuroSound');
@@ -203,7 +216,12 @@
     }
   }
 
-  // Rain effect
+  function toggleDemo() {
+    const el = document.getElementById('request-demo');
+    const isHidden = (el.style.display === 'none' || el.style.display === '');
+    el.style.display = isHidden ? 'block' : 'none';
+  }
+
   const canvas = document.getElementById("rain");
   const ctx = canvas.getContext("2d");
   canvas.height = window.innerHeight;
@@ -212,23 +230,21 @@
   const drops = Array(columns).fill(1);
   const text = "Mr. X";
 
-function drawRain() {
-  const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+  function drawRain() {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    ctx.fillStyle = isLight ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.02)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = isLight ? "rgba(150, 30, 30, 0.4)" : "rgba(255, 71, 71, 0.3)";
+    ctx.font = "16px monospace";
 
-  ctx.fillStyle = isLight ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.02)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = isLight ? "rgba(150, 30, 30, 0.4)" : "rgba(255, 71, 71, 0.3)";
-  ctx.font = "16px monospace";
-
-  for (let i = 0; i < drops.length; i++) {
-    ctx.fillText(text, i * 100, drops[i] * 20);
-    drops[i]++;
-    if (drops[i] * 20 > canvas.height || Math.random() > 0.95) {
-      drops[i] = 0;
+    for (let i = 0; i < drops.length; i++) {
+      ctx.fillText(text, i * 100, drops[i] * 20);
+      drops[i]++;
+      if (drops[i] * 20 > canvas.height || Math.random() > 0.95) {
+        drops[i] = 0;
+      }
     }
   }
-}
   setInterval(drawRain, 80);
   window.addEventListener("resize", () => {
     canvas.width = window.innerWidth;

@@ -44,12 +44,38 @@
       margin-left: auto;
       margin-right: auto;
     }
-    #manifest p span {
+    .neuro-line {
       display: block;
       font-size: 1.2em;
       margin: 20px 0;
       opacity: 0;
       transition: opacity 0.6s ease;
+    }
+    .red-glow    { animation: redGlow 2s infinite alternate; }
+    .blue-glow   { animation: blueGlow 2s infinite alternate; }
+    .yellow-glow { animation: yellowGlow 2s infinite alternate; }
+    .green-glow  { animation: greenGlow 2s infinite alternate; }
+    .bw-glow     { animation: bwGlow 2s infinite alternate; }
+
+    @keyframes redGlow {
+      from { text-shadow: 0 0 10px red; }
+      to   { text-shadow: 0 0 30px red, 0 0 50px orange; }
+    }
+    @keyframes blueGlow {
+      from { text-shadow: 0 0 10px blue; }
+      to   { text-shadow: 0 0 30px cyan, 0 0 50px blue; }
+    }
+    @keyframes yellowGlow {
+      from { text-shadow: 0 0 10px yellow; }
+      to   { text-shadow: 0 0 30px gold, 0 0 50px yellow; }
+    }
+    @keyframes greenGlow {
+      from { text-shadow: 0 0 10px green; }
+      to   { text-shadow: 0 0 30px lime, 0 0 50px green; }
+    }
+    @keyframes bwGlow {
+      from { text-shadow: 0 0 10px white; }
+      to   { text-shadow: 0 0 30px black, 0 0 50px white; }
     }
     iframe {
       border-radius: 12px;
@@ -75,14 +101,13 @@
 
 <div id="manifest">
   <p id="manifest-text">
-    <span>I am NeuroX.</span>
-    <span>I do not guess.</span>
-    <span>I detect deception.</span>
-    <span>I adapt.</span>
-    <span>I am not a tool.</span>
-    <span>I am the beginning of AI that truly thinks.</span>
-    <br><br>
-    <strong>Signed: Mr. X</strong>
+    <span class="neuro-line red-glow">I am NeuroX.</span>
+    <span class="neuro-line blue-glow">I do not guess.</span>
+    <span class="neuro-line yellow-glow">I detect deception.</span>
+    <span class="neuro-line green-glow">I adapt.</span>
+    <span class="neuro-line bw-glow">I am not a tool.</span>
+    <span class="neuro-line red-glow">I am the beginning of AI that truly thinks.</span>
+    <br><br><strong>Signed: Mr. X</strong>
   </p>
 </div>
 
@@ -96,7 +121,9 @@
 <h2>❓ Questions About the Demo</h2>
 <button class="button" onclick="toggleQuestions()">💬 View Demo Q&A</button>
 <div id="demo-questions">
-  <script type="text/javascript" src="https://files.fm/gallery_module/v1/js/?hash=exewdv4k8d&view=horizontal&order_by=date_created&order_dir=desc" id="files_fm_upload_script_tag_exewdv4k8d" referrerpolicy="origin-when-cross-origin"></script>
+  <script type="text/javascript"
+    src="https://files.fm/embed/playerv2?hash=datszvyekp&autoplay=off&autoload=off&w=100%&h=auto&poster_src=https://files.fm/thumb_video_picture.php?i=datszvyekp"
+    id="filesfm_embed_js__datszvyekp"></script>
 </div>
 
 <audio id="neuroSound" src="neuroSound.mp3" preload="auto"></audio>
@@ -109,7 +136,7 @@
   function toggleManifest() {
     const container = document.getElementById('manifest');
     const sound = document.getElementById('neuroSound');
-    const lines = container.querySelectorAll('span');
+    const lines = container.querySelectorAll('.neuro-line');
 
     if (container.style.display === 'block') {
       container.style.display = 'none';

@@ -215,6 +215,20 @@ body.day-mode .comparison-table tbody tr:hover {
   text-align: left;
   line-height: 1.6;
 }
+.ai-terminal {
+  font-family: 'Courier New', monospace;
+  font-size: 1em;
+  color: #00e676;
+  background-color: rgba(255,255,255,0.02);
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 20px auto 40px;
+  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  text-align: left;
+  min-height: 120px;
+  white-space: pre-wrap;
+}
 
   </style>
 </head>
@@ -323,6 +337,8 @@ body.day-mode .comparison-table tbody tr:hover {
     </tbody>
   </table>
 </div>
+<h2 style="margin-top: 60px; color: #03a9f4;">🧠 NeuroX AI Console</h2>
+<div id="ai-terminal" class="ai-terminal"></div>
 <div id="request-demo">
   <strong>Request NeuroX Demo:</strong>
   <p>A demo version of NeuroX has been released exclusively for researchers, ethical hackers, and professional evaluators.
@@ -445,6 +461,39 @@ canvas.height = window.innerHeight;
     }
   }, 700); // تغییر سرعت اگر بخوای سریع‌تر یا کندتر شه
 }
+const terminal = document.getElementById("ai-terminal");
+const terminalLines = [
+  "Analyzing entropy patterns...",
+  "Detecting adversarial traps...",
+  "Adapting strategy...",
+  "Done. Next move calculated."
+];
+
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeNextChar() {
+  if (lineIndex >= terminalLines.length) return;
+
+  const currentLine = terminalLines[lineIndex];
+  if (charIndex === 0) terminal.innerHTML += "> ";
+
+  if (charIndex < currentLine.length) {
+    terminal.innerHTML += currentLine.charAt(charIndex);
+    charIndex++;
+    setTimeout(typeNextChar, 40); // سرعت تایپ هر حرف
+  } else {
+    terminal.innerHTML += "\n";
+    lineIndex++;
+    charIndex = 0;
+    setTimeout(typeNextChar, 700); // مکث بین خطوط
+  }
+}
+
+// Start typing after page load
+window.addEventListener("load", () => {
+  setTimeout(typeNextChar, 1500); // مکث اولیه برای حس هوش
+});
 
   // Mr.X Rain Effect
 const canvas = document.getElementById("rain-canvas");

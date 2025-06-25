@@ -139,10 +139,25 @@ body.day-mode .button:hover {
   margin: 0 auto;
   border-radius: 12px;
 }
+#rain-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+#main-content {
+  position: relative;
+  z-index: 1;
+}
 
   </style>
 </head>
 <body>
+    <canvas id="rain-canvas"></canvas>
+    <div id="main-content">
   <img src="Chatgpt.png" alt="ChatGPT Logo"
   style="width: 500px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,255,255,0.3);">
 
@@ -206,6 +221,8 @@ body.day-mode .button:hover {
     function toggleTheme() {
     const body = document.body;
     body.classList.toggle("day-mode");
+    canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
     // Save preference
     if (body.classList.contains("day-mode")) {
@@ -257,6 +274,46 @@ body.day-mode .button:hover {
     const el = document.getElementById('demo-questions');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
+  // Mr.X Rain Effect
+const canvas = document.getElementById("rain-canvas");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = Array(256).join(" ").split("");
+const fontSize = 14;
+const columns = canvas.width / fontSize;
+const drops = [];
+
+for (let x = 0; x < columns; x++) {
+  drops[x] = Math.random() * canvas.height;
+}
+
+function drawRain() {
+    const isDay = document.body.classList.contains("day-mode");
+ctx.fillStyle = isDay ? "rgba(255, 255, 255, 0.2)" : "rgba(10, 10, 10, 0.2)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#ff4747";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = "Mr.X";
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
+}
+
+setInterval(drawRain, 50);
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
 </script>
 
 </body>

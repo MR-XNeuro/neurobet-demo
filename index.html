@@ -4,6 +4,26 @@
   <meta charset="UTF-8">
   <title>NeuroX Manifest - Mr. X</title>
   <style>
+    .neurox-quote-banner {
+  font-size: 1.2em;
+  max-width: 900px;
+  margin: 0 auto 30px auto;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 6px solid #ff4747;
+  border-radius: 12px;
+  color: #eaeaea;
+  font-family: 'Segoe UI', sans-serif;
+  box-shadow: 0 0 15px rgba(255, 71, 71, 0.4);
+  animation: pulseQuote 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseQuote {
+  0%   { box-shadow: 0 0 8px rgba(255,71,71,0.2); }
+  50%  { box-shadow: 0 0 18px rgba(255,71,71,0.5); }
+  100% { box-shadow: 0 0 8px rgba(255,71,71,0.2); }
+}
+
     body {
   transition: background 0.5s, color 0.5s;
 }
@@ -235,6 +255,11 @@ body.day-mode .comparison-table tbody tr:hover {
 <body>
     <canvas id="rain-canvas"></canvas>
     <div id="main-content">
+      <div class="neurox-quote-banner">
+        🧠 <em>"The AGI that doesn't need your belief. It needs only one thing — to be seen in action."</em>
+        <br>— <strong>Mr. X</strong>
+      </div>
+      
   <img src="Chatgpt.png" alt="ChatGPT Logo"
   style="width: 500px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,255,255,0.3);">
 

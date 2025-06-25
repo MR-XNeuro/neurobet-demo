@@ -4,6 +4,26 @@
   <meta charset="UTF-8">
   <title>NeuroX Manifest - Mr. X</title>
   <style>
+    body {
+  transition: background 0.5s, color 0.5s;
+}
+body.day-mode {
+  background: #f0f0f0;
+  color: #111;
+}
+body.day-mode h1, 
+body.day-mode h2 {
+  color: #ff4747;
+  text-shadow: none;
+}
+body.day-mode .button {
+  background-color: #444;
+  color: #fff;
+}
+body.day-mode .button:hover {
+  background-color: #000;
+}
+
     .glow-loop {
   animation: glowLoop 2s ease-in-out infinite alternate;
 }
@@ -156,7 +176,6 @@
   <strong>Request NeuroX Demo:</strong>
   <p>A demo version of NeuroX has been released exclusively for researchers, ethical hackers, and professional evaluators.
   This version only showcases 5% of NeuroX’s true capabilities and has been deployed against the highly adaptive bc.game platform.
-    Just DOM engineering value is $500
   To receive access to the free demo, email <strong>mrxai-architect@proton.me</strong> with your profession and intent.</p>
 </div>
 
@@ -169,6 +188,9 @@
     referrerpolicy="origin-when-cross-origin"></script>
 </div>
 <audio id="neuroSound" src="neuroSound.mp3" preload="auto"></audio>
+<button onclick="toggleTheme()" class="button" style="position: fixed; top: 20px; right: 20px; z-index: 999;">
+  🌞 / 🌙
+</button>
 <div style="margin-top: 60px;">
   <a href="https://wa.me/989197934854" target="_blank" style="text-decoration: none; color: inherit;">
     <img src="whatsapp.jpg" alt="WhatsApp Mr. X" style="width: 90px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,255,0,0.4);">
@@ -181,6 +203,25 @@
 </footer>
 
 <script>
+    function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle("day-mode");
+
+    // Save preference
+    if (body.classList.contains("day-mode")) {
+      localStorage.setItem("theme", "day");
+    } else {
+      localStorage.setItem("theme", "night");
+    }
+  }
+
+  // Auto-load saved theme
+  window.addEventListener("load", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "day") {
+      document.body.classList.add("day-mode");
+    }
+  });
   function toggleManifest() {
     const container = document.getElementById('manifest');
     const sound = document.getElementById('neuroSound');

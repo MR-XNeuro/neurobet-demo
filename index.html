@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <title>NeuroX Manifest - Mr. X</title>
   <style>
+    .glow-loop {
+  animation: glowLoop 2s ease-in-out infinite alternate;
+}
+
+@keyframes glowLoop {
+  0%   { text-shadow: 0 0 5px #ff4747, 0 0 10px #ff4747; }
+  25%  { text-shadow: 0 0 10px #ffc107, 0 0 20px #ffc107; }
+  50%  { text-shadow: 0 0 15px #00e676, 0 0 25px #00e676; }
+  75%  { text-shadow: 0 0 20px #03a9f4, 0 0 30px #03a9f4; }
+  100% { text-shadow: 0 0 30px #ffffff, 0 0 40px #ffffff; }
+}
+
     body {
       background: #0a0a0a;
       color: #eaeaea;
@@ -85,7 +97,7 @@
 </head>
 <body>
 
-<h1>NeuroX</h1>
+  <h1 class="glow-loop">NeuroX Ultimate Betting AI</h1>
 <h2>📺 Watch Demo Robot in freebitco.in</h2>
 <button class="button" onclick="toggleVideo()">▶️ Show Demo Video</button>
 <div id="demo-video">

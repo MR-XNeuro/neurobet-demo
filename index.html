@@ -1,3 +1,4 @@
+<!-- NeuroX Manifest - Modified Version by Mr. X -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,6 +65,31 @@
       margin-bottom: 50px;
       box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
     }
+    #manifest, #request-demo, #demo-video {
+      display: none;
+      margin-top: 60px;
+      padding: 30px;
+      background-color: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.8;
+      font-size: 1.05em;
+      white-space: pre-line;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+    #demo-video video {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+    }
+    @keyframes glow {
+      from { box-shadow: 0 0 10px rgba(255, 71, 71, 0.2); }
+      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
+    }
     footer {
       margin-top: 60px;
       font-size: 0.9em;
@@ -88,26 +114,6 @@
     .theme-toggle:hover {
       background: var(--accent);
       color: white;
-    }
-    #manifest, #request-demo {
-      display: none;
-      margin-top: 60px;
-      padding: 30px;
-      background-color: rgba(255, 255, 255, 0.03);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-      line-height: 1.8;
-      font-size: 1.05em;
-      white-space: pre-line;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-      animation: glow 1.5s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { box-shadow: 0 0 10px rgba(255, 71, 71, 0.2); }
-      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
     }
     canvas#rain {
       position: fixed;
@@ -137,11 +143,10 @@
   <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Theme</button>
 <section style="margin-top: 70px;">
   <h2 style="color: var(--accent); font-size: 2em;">👤 Meet Mr.X</h2>
-  <p style="font-size: 1.1em; max-width: 800px; margin: 0 auto 30px;">
+  <p>
     Architect of NeuroX • Pioneer of Deceptive-Resilient AI • AGI Thinker<br>
     <em>“I don’t guess. I decide.”</em>
   </p>
-  <!-- اینجا جای لینکدین بود، حالا QR واتس‌آپ -->
   <img src="whatsapp.jpg" alt="WhatsApp QR Code" class="qr-code" title="Scan to contact on WhatsApp" />
 </section>
 
@@ -157,7 +162,8 @@
   </p>
 
   <a class="button" href="neuroxgithub.pdf" download>📄 Download Manifest PDF</a>
-  <a class="button" href="https://trovo.live/s/wilicower/233834960?adtag=user.wilicower.clip" target="_blank">📺 Watch Live: NeuroX in Action</a>
+  <button class="button" onclick="toggleVideo()">📺 Watch Demo Robot in freebitco.in</button>
+  <button class="button" onclick="toggleQuestions()">❓ Questions About the Demo</button>
   <a class="button" href="https://zenodo.org/record/15546559" target="_blank">📚 View Scientific Record (Zenodo)</a>
   <button class="button" onclick="toggleManifest()">🧠 View NeuroX Manifest</button>
   <button class="button" onclick="toggleDemo()">🧪 Request NeuroX Demo</button>
@@ -193,6 +199,21 @@
 
     Think wisely.
   </div>
+
+  <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); max-width: 100%; height: 800px;">
+    <script type="text/javascript" 
+      src="https://files.fm/embed/playerv2?hash=datszvyekp&autoplay=off&autoload=off&w=100%&h=480&poster_src=https://files.fm/thumb_video_picture.php?i=datszvyekp" 
+      id="filesfm_embed_js__datszvyekp">
+    </script>
+  </div>
+  
+
+  
+<div id="demo-questions" style="display: none; margin-top: 60px;">
+  <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);">
+    <script type="text/javascript" src="https://files.fm/embed/playerv2?hash=datszvyekp&autoplay=off&autoload=off&w=100%&h=auto&poster_src=https://files.fm/thumb_video_picture.php?i=datszvyekp" id="filesfm_embed_js__datszvyekp"></script>
+  </div>
+</div>
 
   <footer>
     <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
@@ -231,7 +252,19 @@
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
 
-  // Rain effect on canvas
+  function toggleVideo() {
+    const el = document.getElementById('demo-video');
+    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+  }
+
+  
+  function toggleQuestions() {
+    const el = document.getElementById('demo-questions');
+    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+  }
+
+
+  // Rain effect
   const canvas = document.getElementById('rain');
   const ctx = canvas.getContext('2d');
   let drops = [];
@@ -246,13 +279,13 @@
 
   function initDrops() {
     drops = [];
-    for(let i=0; i<dropCount; i++) {
+    for (let i = 0; i < dropCount; i++) {
       drops.push({
-        x: Math.random()*canvas.width,
-        y: Math.random()*canvas.height,
-        length: 15 + Math.random()*20,
-        speed: 3 + Math.random()*4,
-        opacity: 0.2 + Math.random()*0.3
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        length: 15 + Math.random() * 20,
+        speed: 3 + Math.random() * 4,
+        opacity: 0.2 + Math.random() * 0.3
       });
     }
   }

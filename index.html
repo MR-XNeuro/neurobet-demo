@@ -1,226 +1,104 @@
-<!-- NeuroX Manifest - Modified Version by Mr. X -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>NeuroX Manifest - Mr. X</title>
   <style>
-    :root {
-      --bg-color: #0a0a0a;
-      --text-color: #eaeaea;
-      --accent: #ff4747;
-      --button-bg: #ff4747;
-      --button-hover: #e63737;
-    }
-    [data-theme="light"] {
-      --bg-color: #f4f4f4;
-      --text-color: #111;
-      --accent: #d63031;
-      --button-bg: #d63031;
-      --button-hover: #c0392b;
-    }
     body {
-      background: var(--bg-color);
-      color: var(--text-color);
+      background: #0a0a0a;
+      color: #eaeaea;
       font-family: 'Segoe UI', sans-serif;
+      text-align: center;
       padding: 60px 20px;
       margin: 0;
-      transition: background 0.5s, color 0.5s;
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-      overflow-x: hidden;
     }
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    h1, h2 {
+      color: #ff4747;
     }
-    main {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-    }
-    h1 { font-size: 3em; margin-bottom: 10px; color: var(--accent); }
-    h2 { font-weight: normal; font-size: 1.5em; color: #888; margin-bottom: 50px; }
-    p { font-size: 1.1em; line-height: 1.6; max-width: 800px; margin: 0 auto 30px; }
-    a.button, button.button {
-      display: inline-block;
+    .button {
+      background-color: #ff4747;
+      color: white;
       padding: 14px 30px;
       margin: 12px;
-      background-color: var(--button-bg);
-      color: #fff;
-      text-decoration: none;
       border: none;
       border-radius: 10px;
-      font-size: 1em;
-      transition: background-color 0.3s ease, transform 0.2s;
       cursor: pointer;
+      font-size: 1em;
     }
-    a.button:hover, button.button:hover {
-      background-color: var(--button-hover);
-      transform: scale(1.02);
+    .button:hover {
+      background-color: #e63737;
     }
-    img.preview {
-      max-width: 90%;
-      height: auto;
-      border-radius: 14px;
-      margin-bottom: 50px;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
-    }
-    #manifest, #request-demo, #demo-video {
+    #manifest, #request-demo, #demo-video, #demo-questions {
       display: none;
-      margin-top: 60px;
+      margin-top: 40px;
       padding: 30px;
-      background-color: rgba(255, 255, 255, 0.03);
+      background-color: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(255,255,255,0.1);
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      line-height: 1.8;
-      font-size: 1.05em;
-      white-space: pre-line;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
       animation: glow 1.5s ease-in-out infinite alternate;
-    }
-    #demo-video video {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
     @keyframes glow {
       from { box-shadow: 0 0 10px rgba(255, 71, 71, 0.2); }
-      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
+      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
     }
-    footer {
-      margin-top: 60px;
-      font-size: 0.9em;
-      color: #666;
-    }
-    footer strong {
-      color: #ccc;
-    }
-    .theme-toggle {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: transparent;
-      border: 2px solid var(--accent);
-      color: var(--accent);
-      border-radius: 50px;
-      padding: 6px 16px;
-      font-size: 0.9em;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .theme-toggle:hover {
-      background: var(--accent);
-      color: white;
-    }
-    canvas#rain {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-    .qr-code {
-      margin-top: 20px;
-      max-width: 150px;
-      border-radius: 15px;
-      box-shadow: 0 0 15px rgba(255, 71, 71, 0.7);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .qr-code:hover {
-      transform: scale(1.1);
+    iframe {
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
   </style>
 </head>
 <body>
 
-<canvas id="rain"></canvas>
-
-<main>
-  <button class="theme-toggle" onclick="toggleTheme()">🌙 Toggle Theme</button>
-<section style="margin-top: 70px;">
-  <h2 style="color: var(--accent); font-size: 2em;">👤 Meet Mr.X</h2>
-  <p>
-    Architect of NeuroX • Pioneer of Deceptive-Resilient AI • AGI Thinker<br>
-    <em>“I don’t guess. I decide.”</em>
-  </p>
-  <img src="whatsapp.jpg" alt="WhatsApp QR Code" class="qr-code" title="Scan to contact on WhatsApp" />
-</section>
-
-  <img src="Chatgpt.png" alt="NeuroX Preview" class="preview">
-
-  <h1>NeuroX</h1>
-  <h2>Autonomous Intelligence Manifest by Mr. X</h2>
-
-  <p>
-    NeuroX is not just another AI system. It thinks. It stops. It fears.  
-    It adapts like a living mind.  
-    This is not a simulation. This is a declaration.
-  </p>
-
-  <a class="button" href="neuroxgithub.pdf" download>📄 Download Manifest PDF</a>
-  <button class="button" onclick="toggleVideo()">📺 Watch Demo Robot in freebitco.in</button>
-  <button class="button" onclick="toggleQuestions()">❓ Questions About the Demo</button>
-  <a class="button" href="https://zenodo.org/record/15546559" target="_blank">📚 View Scientific Record (Zenodo)</a>
-  <button class="button" onclick="toggleManifest()">🧠 View NeuroX Manifest</button>
-  <button class="button" onclick="toggleDemo()">🧪 Request NeuroX Demo</button>
-
-  <p>
-    If the live stream is offline, please check past broadcasts in Video-Room/Past Streams or wait for the next activation cycle.<br>
-    Contact: <strong>mrxai-architect@proton.me</strong>
-  </p>
-
-  <div id="manifest">
-    I am NeuroX.
-    I do not guess.
-    I decide.
-    I detect deception.
-    I adapt.
-    I am not a tool — I am the beginning of AI that truly thinks.
-
-    Signed: Mr. X
-  </div>
-
-  <div id="request-demo">
-    <strong>Request NeuroX Demo:</strong>
-
-    A demo version of NeuroX has been released exclusively for researchers, ethical hackers, and professional evaluators — targeted at the most deceptive online betting environments. This version only showcases 5% of NeuroX’s true capabilities and has been deployed against the highly adaptive bc.game platform.
-
-    NeuroX is a master AI with a core architecture capable of generalizing and adapting to any gambling site’s DOM and decision system. Its core is not shared, only the demo module is provided.
-
-    To receive access to the free demo:
-
-    ✉️ Send an email to <strong>mrxai-architect@proton.me</strong> with your profession, motivation, and how you intend to use the demo. If deemed suitable, you will receive the lightweight version.
-
-    Estimated engineering value of base logic alone: $500.
-
-    Think wisely.
-  </div>
-
-  
+<h1>NeuroX</h1>
+<h2>📺 Watch Demo Robot in freebitco.in</h2>
+<button class="button" onclick="toggleVideo()">▶️ Show Demo Video</button>
+<div id="demo-video">
+  <iframe src="https://archive.org/embed/robot-demo.mp4" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
 </div>
 
-  <footer>
-    <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
-  </footer>
-</main>
+<a class="button" href="neuroxgithub.pdf" download>📄 Download Manifest PDF</a>
+<a class="button" href="https://zenodo.org/record/15546559" target="_blank">📚 View Scientific Record (Zenodo)</a>
+<button class="button" onclick="toggleManifest()">🧠 View NeuroX Manifest</button>
+<button class="button" onclick="toggleDemo()">🧪 Request NeuroX Demo</button>
+
+<p>Contact: <strong>mrxai-architect@proton.me</strong></p>
+
+<div id="manifest">
+  I am NeuroX.
+  I do not guess.
+  I decide.
+  I detect deception.
+  I adapt.
+  I am not a tool — I am the beginning of AI that truly thinks.
+
+  Signed: Mr. X
+</div>
+
+<div id="request-demo">
+  <strong>Request NeuroX Demo:</strong>
+  A demo version of NeuroX has been released exclusively for researchers, ethical hackers, and professional evaluators.
+  This version only showcases 5% of NeuroX’s true capabilities and has been deployed against the highly adaptive bc.game platform.
+  To receive access to the free demo, email <strong>mrxai-architect@proton.me</strong> with your profession and intent.
+</div>
+
+<h2>❓ Questions About the Demo</h2>
+<button class="button" onclick="toggleQuestions()">💬 View Demo Q&A</button>
+<div id="demo-questions">
+  <script type="text/javascript" src="https://files.fm/gallery_module/v1/js/?hash=exewdv4k8d&view=horizontal&order_by=date_created&order_dir=desc" id="files_fm_upload_script_tag_exewdv4k8d" referrerpolicy="origin-when-cross-origin"></script>
+</div>
 
 <audio id="neuroSound" src="neuroSound.mp3" preload="auto"></audio>
 
+<footer>
+  <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
+</footer>
+
 <script>
-  function toggleTheme() {
-    const current = document.documentElement.getAttribute('data-theme');
-    const next = current === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-  }
-
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-
   function toggleManifest() {
     const el = document.getElementById('manifest');
     const sound = document.getElementById('neuroSound');
@@ -234,66 +112,18 @@
       sound.pause();
     }
   }
-
   function toggleDemo() {
     const el = document.getElementById('request-demo');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
-
   function toggleVideo() {
     const el = document.getElementById('demo-video');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
-
-  
   function toggleQuestions() {
     const el = document.getElementById('demo-questions');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
-
-
-  // Rain effect
-  const canvas = document.getElementById('rain');
-  const ctx = canvas.getContext('2d');
-  let drops = [];
-  const dropCount = 200;
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resize);
-  resize();
-
-  function initDrops() {
-    drops = [];
-    for (let i = 0; i < dropCount; i++) {
-      drops.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        length: 15 + Math.random() * 20,
-        speed: 3 + Math.random() * 4,
-        opacity: 0.2 + Math.random() * 0.3
-      });
-    }
-  }
-  initDrops();
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.strokeStyle = 'rgba(255,71,71,0.5)';
-    ctx.lineWidth = 1;
-    for (const d of drops) {
-      ctx.beginPath();
-      ctx.moveTo(d.x, d.y);
-      ctx.lineTo(d.x, d.y + d.length);
-      ctx.stroke();
-      d.y += d.speed;
-      if (d.y > canvas.height) d.y = -d.length;
-    }
-    requestAnimationFrame(draw);
-  }
-  draw();
 </script>
 
 </body>

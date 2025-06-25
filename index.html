@@ -172,6 +172,8 @@ body.day-mode .button:hover {
 <a class="button" href="https://zenodo.org/record/15546559" target="_blank">📚 View Scientific Record (Zenodo)</a>
 <button class="button" onclick="toggleManifest()">🧠 View NeuroX Manifest</button>
 <button class="button" onclick="toggleDemo()">🧪 Request NeuroX Demo</button>
+<button class="button" onclick="runSelfTest()">🧬 Run Self Awareness Test</button>
+<div id="self-test-output" style="margin-top: 30px; font-family: monospace; font-size: 1.1em; line-height: 1.6; white-space: pre-wrap; color: #9effef;"></div>
 
 <p>Contact: <strong>mrxai-architect@proton.me</strong></p>
 
@@ -274,6 +276,34 @@ canvas.height = window.innerHeight;
     const el = document.getElementById('demo-questions');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
+  function runSelfTest() {
+  const output = document.getElementById('self-test-output');
+  output.innerHTML = ''; // Reset
+
+  const lines = [
+    '[🔍] Initializing cognitive core...',
+    '[✅] Identity confirmed: NeuroX',
+    '[🧠] Logic modules... OK',
+    '[🕵️‍♂️] Deception detection... ACTIVE',
+    '[⚡] Response engine... READY',
+    '[🚨] Threat awareness... ON',
+    '[✔️] Self-awareness... NOMINAL',
+    '---',
+    'System: NeuroX is now online.'
+  ];
+
+  let index = 0;
+
+  const interval = setInterval(() => {
+    if (index < lines.length) {
+      output.innerHTML += lines[index] + '\n';
+      index++;
+    } else {
+      clearInterval(interval);
+    }
+  }, 700); // تغییر سرعت اگر بخوای سریع‌تر یا کندتر شه
+}
+
   // Mr.X Rain Effect
 const canvas = document.getElementById("rain-canvas");
 const ctx = canvas.getContext("2d");

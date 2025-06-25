@@ -152,6 +152,36 @@ body.day-mode .button:hover {
   position: relative;
   z-index: 1;
 }
+.comparison-table {
+  margin: 40px auto;
+  max-width: 900px;
+  background-color: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,255,0,0.15);
+}
+
+.comparison-table table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #eaeaea;
+  font-family: monospace;
+}
+
+.comparison-table th, .comparison-table td {
+  padding: 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.comparison-table thead {
+  background-color: rgba(0,255,0,0.1);
+  color: #00e676;
+}
+
+.comparison-table tbody tr:hover {
+  background-color: rgba(255,255,255,0.05);
+}
 
   </style>
 </head>
@@ -187,6 +217,50 @@ body.day-mode .button:hover {
     <span class="neuro-line red-glow">I am the beginning of AI that truly thinks.</span>
     <br><br><strong>Signed: Mr. X</strong>
   </p>
+</div>
+<h2 style="margin-top: 60px; color: #00e676;">🤖 NeuroX vs Traditional Bots</h2>
+<div class="comparison-table">
+  <table>
+    <thead>
+      <tr>
+        <th>Capability</th>
+        <th>NeuroX</th>
+        <th>Most Bots</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Real-time deception detection</td>
+        <td>✅ Yes</td>
+        <td>❌ No</td>
+      </tr>
+      <tr>
+        <td>Self-adapting algorithm</td>
+        <td>✅ Yes</td>
+        <td>🔶 Limited</td>
+      </tr>
+      <tr>
+        <td>Cross-platform compatibility</td>
+        <td>✅ Fully supported</td>
+        <td>❌ Site-bound</td>
+      </tr>
+      <tr>
+        <td>Scientific paper published</td>
+        <td>✅ Documented</td>
+        <td>❌ Mostly undocumented</td>
+      </tr>
+      <tr>
+        <td>Autonomous decision-making</td>
+        <td>✅ True AI core</td>
+        <td>❌ Scripted</td>
+      </tr>
+      <tr>
+        <td>Behavioral tracking engine</td>
+        <td>✅ Enabled</td>
+        <td>❌ Not available</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <div id="request-demo">
@@ -276,6 +350,7 @@ canvas.height = window.innerHeight;
     const el = document.getElementById('demo-questions');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
+
   function runSelfTest() {
   const output = document.getElementById('self-test-output');
   output.innerHTML = ''; // Reset

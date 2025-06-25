@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +14,7 @@
     }
     h1, h2 {
       color: #ff4747;
+      text-shadow: 0 0 10px rgba(255,71,71,0.4);
     }
     .button {
       background-color: #ff4747;
@@ -25,9 +25,12 @@
       border-radius: 10px;
       cursor: pointer;
       font-size: 1em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
     .button:hover {
       background-color: #e63737;
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(255,71,71,0.5);
     }
     #manifest, #request-demo, #demo-video, #demo-questions {
       display: none;
@@ -40,11 +43,13 @@
       max-width: 900px;
       margin-left: auto;
       margin-right: auto;
-      animation: glow 1.5s ease-in-out infinite alternate;
     }
-    @keyframes glow {
-      from { box-shadow: 0 0 10px rgba(255, 71, 71, 0.2); }
-      to   { box-shadow: 0 0 30px rgba(255, 71, 71, 0.5); }
+    #manifest p span {
+      display: block;
+      font-size: 1.2em;
+      margin: 20px 0;
+      opacity: 0;
+      transition: opacity 0.6s ease;
     }
     iframe {
       border-radius: 12px;
@@ -58,7 +63,7 @@
 <h2>📺 Watch Demo Robot in freebitco.in</h2>
 <button class="button" onclick="toggleVideo()">▶️ Show Demo Video</button>
 <div id="demo-video">
-  <iframe src="https://archive.org/embed/robot-demo.mp4" width="640" height="480" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+  <iframe src="https://archive.org/embed/robot-demo.mp4" width="640" height="480" frameborder="0" allowfullscreen></iframe>
 </div>
 
 <a class="button" href="neuroxgithub.pdf" download>📄 Download Manifest PDF</a>
@@ -69,21 +74,23 @@
 <p>Contact: <strong>mrxai-architect@proton.me</strong></p>
 
 <div id="manifest">
-  I am NeuroX.
-  I do not guess.
-  I decide.
-  I detect deception.
-  I adapt.
-  I am not a tool — I am the beginning of AI that truly thinks.
-
-  Signed: Mr. X
+  <p id="manifest-text">
+    <span>I am NeuroX.</span>
+    <span>I do not guess.</span>
+    <span>I detect deception.</span>
+    <span>I adapt.</span>
+    <span>I am not a tool.</span>
+    <span>I am the beginning of AI that truly thinks.</span>
+    <br><br>
+    <strong>Signed: Mr. X</strong>
+  </p>
 </div>
 
 <div id="request-demo">
   <strong>Request NeuroX Demo:</strong>
-  A demo version of NeuroX has been released exclusively for researchers, ethical hackers, and professional evaluators.
+  <p>A demo version of NeuroX has been released exclusively for researchers, ethical hackers, and professional evaluators.
   This version only showcases 5% of NeuroX’s true capabilities and has been deployed against the highly adaptive bc.game platform.
-  To receive access to the free demo, email <strong>mrxai-architect@proton.me</strong> with your profession and intent.
+  To receive access to the free demo, email <strong>mrxai-architect@proton.me</strong> with your profession and intent.</p>
 </div>
 
 <h2>❓ Questions About the Demo</h2>
@@ -100,26 +107,36 @@
 
 <script>
   function toggleManifest() {
-    const el = document.getElementById('manifest');
+    const container = document.getElementById('manifest');
     const sound = document.getElementById('neuroSound');
-    const isHidden = (el.style.display === 'none' || el.style.display === '');
-    el.style.display = isHidden ? 'block' : 'none';
-    if (isHidden) {
+    const lines = container.querySelectorAll('span');
+
+    if (container.style.display === 'block') {
+      container.style.display = 'none';
+      lines.forEach(line => line.style.opacity = 0);
+      sound.pause();
+    } else {
+      container.style.display = 'block';
       sound.volume = 0.5;
       sound.currentTime = 0;
       sound.play().catch(e => console.warn("🔇 Autoplay blocked", e));
-    } else {
-      sound.pause();
+
+      lines.forEach((line, i) => {
+        setTimeout(() => line.style.opacity = 1, i * 1200);
+      });
     }
   }
+
   function toggleDemo() {
     const el = document.getElementById('request-demo');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
+
   function toggleVideo() {
     const el = document.getElementById('demo-video');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
+
   function toggleQuestions() {
     const el = document.getElementById('demo-questions');
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';

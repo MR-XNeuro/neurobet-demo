@@ -93,6 +93,32 @@
       border-radius: 12px;
       box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
+    #demo-questions {
+  display: none;
+  margin-top: 40px;
+  padding: 30px;
+  background-color: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.1);
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 420px; /* 👈 ارتفاع اجباری برای نمایش کامل ویدیو */
+  overflow: hidden;
+  position: relative;
+}
+
+#demo-questions iframe, 
+#demo-questions script {
+  width: 100% !important;
+  max-width: 100%;
+  height: 420px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
   </style>
 </head>
 <body>
@@ -134,10 +160,10 @@
 <button class="button" onclick="toggleQuestions()">💬 View Demo Q&A</button>
 <div id="demo-questions">
   <script type="text/javascript"
-    src="https://files.fm/embed/playerv2?hash=datszvyekp&autoplay=off&autoload=off&w=100%&h=auto&poster_src=https://files.fm/thumb_video_picture.php?i=datszvyekp"
-    id="filesfm_embed_js__datszvyekp"></script>
+    src="https://files.fm/gallery_module/v1/js/?hash=exewdv4k8d&view=horizontal&order_by=date_created&order_dir=desc"
+    id="files_fm_upload_script_tag_exewdv4k8d"
+    referrerpolicy="origin-when-cross-origin"></script>
 </div>
-
 <audio id="neuroSound" src="neuroSound.mp3" preload="auto"></audio>
 <div style="margin-top: 60px;">
   <a href="https://wa.me/989197934854" target="_blank" style="text-decoration: none; color: inherit;">

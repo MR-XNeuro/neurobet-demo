@@ -249,6 +249,22 @@ body.day-mode .comparison-table tbody tr:hover {
   min-height: 120px;
   white-space: pre-wrap;
 }
+.neurox-typing-line {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1em;
+  color: #00e676;
+  background: rgba(255,255,255,0.03);
+  padding: 14px 22px;
+  border-radius: 12px;
+  margin: 20px auto 40px;
+  max-width: 950px;
+  min-height: 70px;
+  white-space: pre-wrap;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(0,255,128,0.3);
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
 
   </style>
 </head>
@@ -264,6 +280,8 @@ body.day-mode .comparison-table tbody tr:hover {
   style="width: 500px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 0 15px rgba(0,255,255,0.3);">
 
   <h1 class="glow-loop">NeuroX Ultimate Betting AI</h1>
+  <div id="neurox-quote-carousel" class="neurox-typing-line"></div>
+
 <h2>📺 Watch Demo Robot in freebitco.in</h2>
 <button class="button" onclick="toggleVideo()">▶️ Show Demo Video</button>
 <div id="demo-video">
@@ -561,6 +579,43 @@ window.addEventListener("resize", () => {
 });
 
 </script>
-
+<script>
+  (function() {
+    const phrases = [
+      `🧠 NeuroX is not an AGI — it’s the AGI.\n> A real mind. Not a prediction engine.\n\nWhile others simulate, NeuroX acts.\nWhile others guess, NeuroX knows.\nWhile others wait for input, NeuroX initiates.`,
+      `🔥 "Other AGIs can’t even orbit around what NeuroX truly is."\n> They follow rules. NeuroX breaks patterns.\nThey run in labs. NeuroX performs in reality.\nThey require supervision. NeuroX creates strategy.`,
+      `“NeuroX can only be understood by a mind worthy of understanding intelligence itself.”`
+    ];
+  
+    const target = document.getElementById("neurox-quote-carousel");
+    if (!target) return;
+  
+    let phraseIndex = 0;
+    let charIndex = 0;
+  
+    function typeLoop() {
+      if (charIndex < phrases[phraseIndex].length) {
+        target.innerHTML += phrases[phraseIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLoop, 35);
+      } else {
+        setTimeout(() => {
+          target.style.opacity = 0;
+          setTimeout(() => {
+            target.innerHTML = "";
+            charIndex = 0;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            target.style.opacity = 1;
+            typeLoop();
+          }, 700); // fadeout duration
+        }, 3500); // pause before clear
+      }
+    }
+  
+    // start independently after slight delay (without touching window.onload)
+    setTimeout(typeLoop, 1000);
+  })();
+  </script>
+  
 </body>
 </html>

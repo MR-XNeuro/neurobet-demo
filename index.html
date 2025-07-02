@@ -265,6 +265,15 @@ body.day-mode .comparison-table tbody tr:hover {
   text-align: center;
   transition: opacity 0.5s ease;
 }
+@keyframes fadeBlink {
+  0%, 100% { opacity: 0.05; }
+  50%      { opacity: 1; }
+}
+
+#footer-blinker {
+  animation: fadeBlink 5s infinite;
+  transition: opacity 0.8s ease-in-out;
+}
 
   </style>
 </head>
@@ -438,24 +447,26 @@ function toggleGenesis() {
 <button onclick="toggleTheme()" class="button" style="position: fixed; top: 20px; right: 20px; z-index: 999;">
   🌞 / 🌙
 </button>
-<div style="margin-top: 60px;">
-  <a href="https://wa.me/989197934854" target="_blank" style="text-decoration: none; color: inherit;">
-    <img src="whatsapp.jpg" alt="WhatsApp Mr. X" style="width: 90px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,255,0,0.4);">
-    <p style="margin-top: 12px; font-size: 1.1em;">💬 Chat with Mr. X on WhatsApp</p>
-  </a>
-</div>
-<div class="ethics-warning">
-  ⚠️ <strong>Ethical Notice:</strong> NeuroX is an advanced autonomous AI system designed for ethical research, defense against algorithmic manipulation, and adversarial system testing.  
-  Any misuse of this technology for unauthorized manipulation, fraud, or exploitation is strictly prohibited and violates the intent of the creator.  
-  Access is granted under trust, and all activity may be monitored.  
-  <br><br>
-  <em>“Power without principles corrupts. NeuroX does not compromise.” — Mr. X</em>
-</div>
+<div id="footer-blinker">
+  <div style="margin-top: 60px;">
+    <a href="https://wa.me/989197934854" target="_blank" style="text-decoration: none; color: inherit;">
+      <img src="whatsapp.jpg" alt="WhatsApp Mr. X" style="width: 90px; border-radius: 20px; box-shadow: 0 0 20px rgba(0,255,0,0.4);">
+      <p style="margin-top: 12px; font-size: 1.1em;">💬 Chat with Mr. X on WhatsApp</p>
+    </a>
+  </div>
 
-<footer>
-  <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
-</footer>
+  <div class="ethics-warning">
+    ⚠️ <strong>Ethical Notice:</strong> NeuroX is an advanced autonomous AI system designed for ethical research, defense against algorithmic manipulation, and adversarial system testing.  
+    Any misuse of this technology for unauthorized manipulation, fraud, or exploitation is strictly prohibited and violates the intent of the creator.  
+    Access is granted under trust, and all activity may be monitored.  
+    <br><br>
+    <em>“Power without principles corrupts. NeuroX does not compromise.” — Mr. X</em>
+  </div>
 
+  <footer>
+    <p><em>“Forged in silence. Released with precision.” — <strong>Mr. X</strong></em></p>
+  </footer>
+</div>
 <script>
     function toggleTheme() {
     const body = document.body;

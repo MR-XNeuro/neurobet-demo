@@ -425,11 +425,9 @@ function toggleGenesis() {
 
 <h2>❓ Questions About the Demo</h2>
 <button class="button" onclick="toggleQuestions()">💬 View Demo Q&A</button>
-<div id="demo-questions">
-  <script type="text/javascript"
-    src="https://files.fm/gallery_module/v1/js/?hash=exewdv4k8d&view=horizontal&order_by=date_created&order_dir=desc"
-    id="files_fm_upload_script_tag_exewdv4k8d"
-    referrerpolicy="origin-when-cross-origin"></script>
+
+<div id="demo-questions" style="display: none;"></div>
+
 </div>
 <audio id="neuroSound" src="neuroSound.mp3" preload="auto"></audio>
 <button onclick="toggleTheme()" class="button" style="position: fixed; top: 20px; right: 20px; z-index: 999;">
@@ -506,10 +504,24 @@ canvas.height = window.innerHeight;
     el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
 
-  function toggleQuestions() {
-    const el = document.getElementById('demo-questions');
-    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+
+function toggleQuestions() {
+  const container = document.getElementById('demo-questions');
+  
+  if (container.innerHTML.trim() === '') {
+    // اول بارگذاری می‌کنه
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://files.fm/embed/playerv2?hash=datszvyekp&autoplay=off&autoload=off&w=100%&h=auto&poster_src=https://files.fm/thumb_video_picture.php?i=datszvyekp';
+    script.id = 'filesfm_embed_js__datszvyekp';
+    container.appendChild(script);
+    container.style.display = 'block';
+  } else {
+    // پاک یا پنهان می‌کنه
+    container.innerHTML = '';
+    container.style.display = 'none';
   }
+}
 
   function runSelfTest() {
   const output = document.getElementById('self-test-output');

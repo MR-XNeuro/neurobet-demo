@@ -7,6 +7,16 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- 🎵 Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="https://mr-xneuro.github.io/neurobet-demo/67573331da66b.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- 🔇 Mute/Unmute Button -->
+  <div style="position: fixed; bottom: 15px; right: 15px; background-color: #111; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 5px; padding: 6px 10px; font-size: 14px; cursor: pointer; z-index: 999;" onclick="toggleAudio()">
+    🔊 Mute/Unmute
+  </div>
   <header>
     <h1>NEUROX</h1>
     <p>Dice Pattern Decryption Unit</p>
@@ -169,19 +179,15 @@
     document.getElementById("affiliateLink").value = affiliateLink;
     document.getElementById("affiliateResult").style.display = "block";
   });
-</script>
-<!-- 🎵 Background Music Player -->
-<audio id="bgMusic" autoplay loop>
-  <source src="67573331da66b.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+// Enable audio after first interaction
+  document.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("bgMusic");
+    document.body.addEventListener("click", function playOnce() {
+      audio.play().catch(() => {});
+      document.body.removeEventListener("click", playOnce);
+    });
+  });
 
-<!-- 🔇 Mute/Unmute Button -->
-<div style="position: fixed; bottom: 15px; right: 15px; background-color: #111; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 5px; padding: 6px 10px; font-size: 14px; cursor: pointer; z-index: 999;" onclick="toggleAudio()">
-  🔊 Mute/Unmute
-</div>
-
-<script>
   function toggleAudio() {
     const audio = document.getElementById("bgMusic");
     audio.muted = !audio.muted;

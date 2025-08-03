@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Affiliate Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    h2 { margin-bottom: 10px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 5px; }
+    .loading { color: #999; }
+  </style>
+</head>
+<body>
+  <h2>📊 Affiliate Dashboard</h2>
+  <p id="status" class="loading">Loading data...</p>
+  <div id="dashboard" style="display: none;">
+    <p><strong>Email:</strong> <span id="ref"></span></p>
+    <p><strong>Total Clicks:</strong> <span id="clicks"></span></p>
+    <p><strong>Total Sales:</strong> <span id="sales"></span></p>
+    <p><strong>Estimated Earnings:</strong> <span id="earnings"></span> LTC</p>
+    <h3>Transactions:</h3>
+    <ul id="txs"></ul>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+
+    if (!ref) {
+      document.getElementById("status").innerText = "Missing ?ref parameter in URL.";
+    } else {
+      document.getElementById("ref").innerText = ref;
+      fetch(`https://neurobet-backend.onrender.com/affiliate-dashboard?ref=${encodeURIComponent(ref)}`)
+        .then(res => res.text())
+        .then(html => {
+          // Extract data from HTML manually (optional: use API for cleaner design)
+          const temp = document.createElement("div");
+          temp.innerHTML = html;
+
+          const get = label => temp.querySelector(`strong:contains('${label}')`)?.nextSibling?.textContent?.trim() || "N/A";
+          document.getElementById("clicks").innerText = get("Total Clicks:");
+          document.getElementById("sales").innerText = get("Total Sales:");
+          document.getElementById("earnings").innerText = get("Estimated Earnings:");
+
+          const txs = [...temp.querySelectorAll("li")];
+          const txList = document.getElementById("txs");
+          txs.forEach(tx => {
+            const li = document.createElement("li");
+            li.innerText = tx.innerText;
+            txList.appendChild(li);
+          });
+
+          document.getElementById("dashboard").style.display = "block";
+          document.getElementById("status").style.display = "none";
+        })
+        .catch(err => {
+          console.error(err);
+          document.getElementById("status").innerText = "Failed to load dashboard.";
+        });
+    }
+  </script>
+</body>
+</html>

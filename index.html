@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +16,9 @@
     <section class="affiliate">
       <h2>🤝 Become an Affiliate</h2>
       <p>Earn <strong>10% commission</strong> on every referral. Share your custom link and get paid in LTC.</p>
+      <p style="margin-top:5px; color:#00ffcc;">
+  All referred purchases are tracked by our server. You can access your dashboard anytime to monitor your referral statistics.
+</p>
       <form id="affiliateForm">
         <input type="email" id="affiliateEmail" placeholder="Enter your email" required>
         <button type="submit">Generate Affiliate Link</button>
@@ -26,10 +28,13 @@
         <input type="text" id="affiliateLink" readonly style="width:100%;">
       </div>
     </section>
-
+    
     <section class="affiliate-dashboard-access">
       <h2>📊 View Your Affiliate Dashboard</h2>
       <p>Enter your affiliate email to view your performance:</p>
+      <p style="margin-top:5px; color:#00ffcc;">
+  Once your earnings reach <strong>0.5 LTC</strong>, please contact our support team to request your payout.
+</p>
       <input type="email" id="dashboardEmail" placeholder="your@email.com" required />
       <button onclick="goToDashboard()">Go to Dashboard</button>
     </section>

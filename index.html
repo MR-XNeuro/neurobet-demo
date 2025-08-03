@@ -80,8 +80,9 @@
   </footer>
 
 
+
 <script>
-  // ذخیره affiliate ref از URL در localStorage
+  // ارسال ref مستقیم در POST (همچنان در localStorage هم ذخیره برای استفاده بعدی)
   const urlParams = new URLSearchParams(window.location.search);
   const ref = urlParams.get('ref');
   if (ref) {
@@ -121,7 +122,6 @@
     }
   });
 
-
   // Affiliate link generator
   document.getElementById("affiliateForm").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -132,7 +132,7 @@
     document.getElementById("affiliateLink").value = affiliateLink;
     document.getElementById("affiliateResult").style.display = "block";
   });
-
 </script>
+
 </body>
 </html>

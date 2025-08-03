@@ -13,6 +13,19 @@
   </header>
 
   <main>
+    <section class="affiliate">
+      <h2>🤝 Become an Affiliate</h2>
+      <p>Earn <strong>10% commission</strong> on every referral. Share your custom link and get paid in LTC.</p>
+      <form id="affiliateForm">
+        <input type="email" id="affiliateEmail" placeholder="Enter your email" required>
+        <button type="submit">Generate Affiliate Link</button>
+      </form>
+      <div id="affiliateResult" style="margin-top: 15px; display:none;">
+        <p>Your referral link:</p>
+        <input type="text" id="affiliateLink" readonly style="width:100%;">
+      </div>
+    </section>
+
     <section class="banner">
       <img src="assets/banner.jpg" alt="NeuroX Banner" class="banner">
     </section>
@@ -66,10 +79,19 @@
     <p>&copy; 2025 NeuroX AGI. All rights reserved. | Contact: <a href="mailto:mrxai-architect@tuta.io">mrxai-architect@tuta.io</a></p>
   </footer>
 
+
 <script>
+  // ذخیره affiliate ref از URL در localStorage
+  const urlParams = new URLSearchParams(window.location.search);
+  const ref = urlParams.get('ref');
+  if (ref) {
+    localStorage.setItem('affiliate_ref', ref);
+  }
+
   document.getElementById("payForm").addEventListener("submit", async function (e) {
     e.preventDefault();
     const email = document.getElementById("email").value;
+    const refCode = localStorage.getItem('affiliate_ref');
     const button = document.querySelector("#payForm button");
     const originalText = button.innerText;
 
@@ -80,7 +102,7 @@
       const res = await fetch("https://neurobet-backend.onrender.com/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email })
+        body: JSON.stringify({ email, ref: refCode })
       });
 
       if (res.ok) {
@@ -98,6 +120,19 @@
       button.innerText = originalText;
     }
   });
+
+
+  // Affiliate link generator
+  document.getElementById("affiliateForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const email = document.getElementById("affiliateEmail").value.trim();
+    const encodedEmail = encodeURIComponent(email);
+    const affiliateLink = `https://mr-xneuro.github.io/neurobet-demo/?ref=${encodedEmail}`;
+
+    document.getElementById("affiliateLink").value = affiliateLink;
+    document.getElementById("affiliateResult").style.display = "block";
+  });
+
 </script>
 </body>
 </html>

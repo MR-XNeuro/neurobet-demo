@@ -25,6 +25,24 @@
         <input type="text" id="affiliateLink" readonly style="width:100%;">
       </div>
     </section>
+<section class="affiliate-dashboard-access">
+  <h2>📊 View Your Affiliate Dashboard</h2>
+  <p>Enter your affiliate email to view your performance:</p>
+  <input type="email" id="dashboardEmail" placeholder="your@email.com" required />
+  <button onclick="goToDashboard()">Go to Dashboard</button>
+</section>
+
+<script>
+  function goToDashboard() {
+    const email = document.getElementById("dashboardEmail").value.trim();
+    if (!email || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    const encodedEmail = encodeURIComponent(email);
+    window.location.href = `affiliate_dashboard.html?ref=${encodedEmail}`;
+  }
+</script>
 
     <section class="banner">
       <img src="assets/banner.jpg" alt="NeuroX Banner" class="banner">

@@ -2,50 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NeuroX | Smart Dice AI</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <div class="logo">NEUROX</div>
-    <h1 class="tagline">Dice Pattern Decryption Unit</h1>
+    <h1>NEUROX</h1>
+    <p>Dice Pattern Decryption Unit</p>
   </header>
 
-  <section class="hero">
-    <img src="assets/banner.jpg" alt="NeuroX AGI" class="banner" />
-  </section>
+  <main>
+    <section class="banner">
+      <img src="assets/banner.jpg" alt="NeuroX Robot" />
+    </section>
 
-  <section class="features">
-    <h2>Features</h2>
-    <ul>
-      <li>🎯 For bc.game Section Dice</li>
-      <li>🎯 Self-learning AGI with dice algorithm recognition</li>
-      <li>🔐 Secure server-injected execution</li>
-      <li>📉 Smart base bet loss tracking (up to 16 losses)</li>
-      <li>🧠 Advanced AI models: Multiple Smart layers</li>
-      <li>💻 Portable Windows version – No installation needed</li>
-    </ul>
-  </section>
+    <section class="features">
+      <h2>Features</h2>
+      <ul>
+        <li>🤖 Self-learning AGI with dice algorithm recognition</li>
+        <li>🔐 Secure server-injected execution</li>
+        <li>📉 Smart base bet loss tracking (up to 16 losses)</li>
+        <li>📊 Advanced AI models: GAN, Bayesian, Deep Trend</li>
+        <li>🖥 Portable Windows version – No installation needed</li>
+      </ul>
+    </section>
 
-  <section class="trial">
-    <h2>🧪 Free 6-Hour Trial</h2>
-    <p>No registration required. Just download and run!</p>
-    <a href="#" class="btn">Download Trial</a>
-  </section>
+    <section class="trial">
+      <h2>🧪 Free 6-Hour Trial</h2>
+      <p>No registration required. Just download and run!</p>
+      <a href="#" class="btn">Download Trial</a>
+    </section>
 
-  <section class="premium">
-    <h2>💳 Premium Version</h2>
-    <p>Buy 1-month access. Pay in Litecoin (LTC).</p>
-    <ul>
-      <li>Includes full feature set + base bet customization</li>
-      <li>Secure, anti-crack licensing system</li>
-    </ul>
-    <a href="#" class="btn">Buy License</a>
-  </section>
+    <section class="premium">
+      <h2>💳 Premium Version</h2>
+      <p>Buy 1-month access. Pay in Litecoin (LTC).</p>
+      <ul>
+        <li>Includes full feature set + base bet customization</li>
+        <li>Secure, anti-crack licensing system</li>
+      </ul>
+
+      <form id="payForm">
+        <input type="email" id="email" placeholder="Enter your email" required />
+        <button type="submit" class="btn">Get Payment Link</button>
+      </form>
+
+      <div id="paymentInfo" style="display:none; margin-top:1rem;">
+        <p><strong>Send Litecoin to:</strong></p>
+        <code id="ltcAddress">Loading...</code>
+        <div style="margin-top: 10px;">
+          <img id="qrImage" src="" alt="QR Code" width="150"/>
+        </div>
+        <p>Confirmation will be sent to your email.</p>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>Contact: mrxai-architect@tuta.io | Telegram: @NoraxSupportBot</p>
+    <p>&copy; 2025 NeuroX AGI. All rights reserved. | Contact: <a href="mailto:mrxai-architect@tuta.io">mrxai-architect@tuta.io</a></p>
   </footer>
+
+  <script>
+    document.getElementById("payForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+      const email = document.getElementById("email").value;
+      const res = await fetch("https://neurobet-backend.onrender.com/order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        document.getElementById("ltcAddress").innerText = data.address;
+        document.getElementById("qrImage").src = data.qr;
+        document.getElementById("paymentInfo").style.display = "block";
+      } else {
+        alert("Something went wrong. Try again later.");
+      }
+    });
+  </script>
 </body>
 </html>

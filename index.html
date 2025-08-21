@@ -163,7 +163,7 @@
       return;
     }
     const encodedEmail = encodeURIComponent(email);
-    window.location.href = `https://neurobet-backend.onrender.com/affiliate-dashboard?ref=${encodedEmail}`;
+    window.location.href = `https://neurobackend.onrender.com/affiliate-dashboard?ref=${encodedEmail}`;
   }
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -183,7 +183,7 @@
     button.innerText = "Please wait...";
 
     try {
-      const res = await fetch("https://neurobet-backend.onrender.com/order", {
+      const res = await fetch("https://neurobackend.onrender.com/order", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, ref: refCode })

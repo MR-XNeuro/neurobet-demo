@@ -1,23 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>NeuroX AGI Dice Bot | Earn LTC, Beat Casino Patterns</title>
-  <meta name="description" content="NeuroX is the first AGI-powered dice bot for BC.Game. Self-learning, secure, and profitable. Try a 6-hour free trial today.">
-  <meta name="keywords" content="NeuroX, AGI bot, Dice bot, BC.Game bot, Litecoin affiliate, earn LTC, gambling AI, auto bet bot, AGI crypto, AI trading, casino bot">
-  <meta name="author" content="NeuroX AGI">
-  <meta name="robots" content="index, follow">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="NeuroX | AGI Dice Bot for BC.Game">
-  <meta property="og:description" content="Smart self-learning bot for BC.Game with 10% LTC affiliate.">
-  <meta property="og:image" content="https://mr-xneuro.github.io/neurobet-demo/assets/banner.jpg">
-  <meta property="og:url" content="https://mr-xneuro.github.io/neurobet-demo/">
-  <meta name="twitter:card" content="summary_large_image">
-
-  <link rel="stylesheet" href="style.css" />
-  <script type="application/ld+json">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NeuroX AGI Dice Bot | Earn LTC, Beat Casino Patterns</title>
+<meta content="NeuroX is the first AGI-powered dice bot for BC.Game. Self-learning, secure, and profitable. Try a 6-hour free trial today." name="description"/>
+<meta content="NeuroX, AGI bot, Dice bot, BC.Game bot, Litecoin affiliate, earn LTC, gambling AI, auto bet bot, AGI crypto, AI trading, casino bot" name="keywords"/>
+<meta content="NeuroX AGI" name="author"/>
+<meta content="index, follow" name="robots"/>
+<!-- Open Graph -->
+<meta content="NeuroX | AGI Dice Bot for BC.Game" property="og:title"/>
+<meta content="Smart self-learning bot for BC.Game with 10% LTC affiliate." property="og:description"/>
+<meta content="https://mr-xneuro.github.io/neurobet-demo/assets/banner.jpg" property="og:image"/>
+<meta content="https://mr-xneuro.github.io/neurobet-demo/" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<link href="style.css" rel="stylesheet"/>
+<script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -34,127 +33,114 @@
   }
   </script>
 </head>
-
 <body>
-    <!-- 🎵 Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="https://mr-xneuro.github.io/neurobet-demo/67573331da66b.mp3" type="audio/mpeg">
+<!-- 🎵 Background Music -->
+<audio id="bgMusic" loop="">
+<source src="https://mr-xneuro.github.io/neurobet-demo/67573331da66b.mp3" type="audio/mpeg"/>
     Your browser does not support the audio element.
   </audio>
-
-  <!-- 🔇 Mute/Unmute Button -->
-  <div style="position: fixed; bottom: 15px; right: 15px; background-color: #111; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 5px; padding: 6px 10px; font-size: 14px; cursor: pointer; z-index: 999;" onclick="toggleAudio()">
+<!-- 🔇 Mute/Unmute Button -->
+<div onclick="toggleAudio()" style="position: fixed; bottom: 15px; right: 15px; background-color: #111; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 5px; padding: 6px 10px; font-size: 14px; cursor: pointer; z-index: 999;">
     🔊 Mute/Unmute
   </div>
-  <header>
-    <h1>NEUROX</h1>
-    <p>GOOD News Great Update ! Dice Pattern Decryption Unit 10% Daily ROI</p>
-  </header>
-
-  <main>
-    <section class="affiliate">
-      <h2>🤝 Become an Affiliate</h2>
-      <p>Earn <strong>50% commission</strong> on every referral. Share your custom link and get paid in LTC.</p>
-      <p style="margin-top:5px; color:#00ffcc;">
+<header>
+<h1>NEUROX</h1>
+<p>GOOD News Great Update ! Dice Pattern Decryption Unit 10% Daily ROI</p>
+</header>
+<main>
+<section class="affiliate">
+<h2>🤝 Become an Affiliate</h2>
+<p>Earn <strong>50% commission</strong> on every referral. Share your custom link and get paid in LTC.</p>
+<p style="margin-top:5px; color:#00ffcc;">
   All referred purchases are tracked by our server. You can access your dashboard anytime to monitor your referral statistics.
   Every referred user who requests a license after purchase will contribute to your affiliate earnings automatically.
 </p>
-      <form id="affiliateForm">
-        <input type="email" id="affiliateEmail" placeholder="Enter your email" required>
-        <button type="submit">Generate Affiliate Link</button>
-      </form>
-      <div id="affiliateResult" style="margin-top: 15px; display:none;">
-        <p>Your referral link:</p>
-        <input type="text" id="affiliateLink" readonly style="width:100%;">
-      </div>
-    </section>
-    
-    <section class="affiliate-dashboard-access">
-      <h2>📊 View Your Affiliate Dashboard</h2>
-      <p>Enter your affiliate email to view your performance:</p>
-      <p style="margin-top:5px; color:#00ffcc;">
+<form id="affiliateForm">
+<input id="affiliateEmail" placeholder="Enter your email" required="" type="email"/>
+<button type="submit">Generate Affiliate Link</button>
+</form>
+<div id="affiliateResult" style="margin-top: 15px; display:none;">
+<p>Your referral link:</p>
+<input id="affiliateLink" readonly="" style="width:100%;" type="text"/>
+</div>
+</section>
+<section class="affiliate-dashboard-access">
+<h2>📊 View Your Affiliate Dashboard</h2>
+<p>Enter your affiliate email to view your performance:</p>
+<p style="margin-top:5px; color:#00ffcc;">
   Once your earnings reach <strong>0.5 LTC</strong>, please contact our support team to request your payout.
 </p>
-      <input type="email" id="dashboardEmail" placeholder="your@email.com" required />
-      <button onclick="goToDashboard()">Go to Dashboard</button>
-    </section>
-
-    <section class="banner">
-      <img src="assets/banner.jpg" alt="NeuroX AGI Gambling Bot Banner for BC.Game" class="banner">
-    </section>
+<input id="dashboardEmail" placeholder="your@email.com" required="" type="email">
+<button onclick="goToDashboard()">Go to Dashboard</button>
+</input></section>
+<section class="banner">
+<img alt="NeuroX AGI Gambling Bot Banner for BC.Game" class="banner" src="assets/banner.jpg"/>
+</section>
 <section class="demo-video" style="margin: 30px auto; max-width: 600px; text-align: center; background-color: #111; padding: 15px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,255,255,0.2);">
-  <h3 style="color: #00ffcc; margin-bottom: 10px;">🎥 Watch NeuroX AI in Action</h3>
-  <iframe src="https://archive.org/embed/rec-0004_202508" width="100%" height="315" frameborder="0" webkitallowfullscreen="true" mozallowfullscreen="true" allowfullscreen></iframe>
+<h3 style="color: #00ffcc; margin-bottom: 10px;">🎥 Watch NeuroX AI in Action</h3>
+<iframe allowfullscreen="" frameborder="0" height="315" mozallowfullscreen="true" src="https://archive.org/embed/rec-0001_202508" webkitallowfullscreen="true" width="100%"></iframe>
 </section>
+<section class="features">
+<h2>🤖 Smart Betting Bot – Asset-Protected</h2>
+<p class="catchphrase">A smart betting bot that protects your capital while keeping the game in your favor.</p>
+<p>An intelligent betting automation tool with a built-in capital protection system that prevents sudden losses and manages risk dynamically. 
+The bot adapts to market conditions, detects deceptive patterns, and self-regulates to keep your balance safe while maintaining steady performance.</p>
 
-    <section class="features">
-      <h2>Features</h2>
-      <ul>
-    <li>🤖 Self-learning AGI with dice algorithm recognition</li>
-    <li>🎲 Works in <strong>BC.Game</strong></li>
-    <li>🔐 Secure server-injected execution</li>
-    <li>
-  📉 Set your capital as a buffer for up to 10 losses. For example, with a 0.02 base bet, you’ll need at least 50 rubles. The system has a control mechanism and won’t let you suffer a heavy loss!
-<br>
-  <span style="color:#00ffcc; font-size: 0.95em;">
-    The AI is trained to adapt and learn from losing streaks by analyzing deceptive patterns in the dice game. To allow this behavior, you should allocate enough balance to withstand up to 10 consecutive losses. This ensures the bot has enough room to recover and make smart adjustments during gameplay.
-  </span>
-</li>
-    <li>📊 Advanced AI models: multiple smart layer</li>
-    <li>🖥 Portable Windows version – No installation needed</li>
-      </ul>
-    </section>
-
-<section class="trial"> 
-  <h2>🧪 Free 6-Hour Trial</h2>
-  <p>No registration required. Just download and run!</p>
-  <p style="margin-top: 5px; color: #00ffcc;">
-    The trial file includes a video tutorial and a <strong>README</strong> guide.<br>
-    <strong>Please make sure to read the README file and watch the tutorial video before running the bot.</strong>
-  </p>
-  <a href="https://files-from.my-files-forever.com/1467face-d3d0-4d22-b547-a74c6be5354e_NeuroxTrialversion.rar" class="btn" target="_blank">Download Trial</a>
+✨ <strong>Features</strong>
+<ul>
+<li>🛡 Asset Protection → prevents explosive bet growth and uncontrolled losses</li>
+<li>🔄 Dynamic Recovery → smartly recovers after consecutive losses</li>
+<li>⚖ Self-Regulation → automatically adjusts to changing conditions</li>
+<li>🧩 Pattern Shield → reacts to risky or deceptive streaks</li>
+</ul>
+<h3>🔒 Why safer?</h3>
+<p>Unlike ordinary bots that burn through your balance after a few losses, this bot uses multi-layered defense mechanisms to manage your capital step by step — keeping risk under control.</p>
 </section>
-    
-    <section class="premium">
-      <h2>💳 Premium Version</h2>
-      <p>💳 Buy 1-month access. Pay in Litecoin (LTC) <span style="margin-left:10px;">💰 Price: <strong>0.35 LTC</strong></span></p>
-      <ul>
-        <li>Includes full feature set + base bet customization</li>
-        <p style="margin-top: 5px; color: #00ffcc;">
-  After your purchase, please send your desired base bet amount along with the email you used for payment to our support email or Telegram listed below.<br>
+<section class="trial">
+<h2>🧪 Free 6-Hour Trial</h2>
+<p>No registration required. Just download and run!</p>
+<p style="margin-top: 5px; color: #00ffcc;">
+    The trial file includes a video tutorial and a <strong>README</strong> guide.<br/>
+<strong>Please make sure to read the README file and watch the tutorial video before running the bot.</strong>
+</p>
+<a class="btn" href="https://files-from.my-files-forever.com/1467face-d3d0-4d22-b547-a74c6be5354e_NeuroxTrialversion.rar" target="_blank">Download Trial</a>
+</section>
+<section class="premium">
+<h2>💳 Premium Version</h2>
+<p>💳 Buy 1-month access. Pay in Litecoin (LTC) <span style="margin-left:10px;">💰 Price: <strong>0.35 LTC</strong></span></p>
+<ul>
+<li>Includes full feature set + base bet customization</li>
+<p style="margin-top: 5px; color: #00ffcc;">
+  After your purchase, please send your desired base bet amount along with the email you used for payment to our support email or Telegram listed below.<br/>
   Otherwise, your license will be delivered with the minimum default base bet.
 </p>
-        <li>Secure, anti-crack licensing system</li>
-      </ul>
-      <p style="margin-top: 10px; color: #00ffcc;">
-        After completing the payment, a confirmation email will be sent to your address automatically.<br>
+<li>Secure, anti-crack licensing system</li>
+</ul>
+<p style="margin-top: 10px; color: #00ffcc;">
+        After completing the payment, a confirmation email will be sent to your address automatically.<br/>
         If you don’t receive the confirmation within <strong>30 minutes</strong>, please email your <strong>Transaction ID</strong> to our support team.
       </p>
-
-      <form id="payForm">
-        <input type="email" id="email" placeholder="Enter your email" required />
-        <button type="submit" class="btn">Get Payment Link</button>
-      </form>
-
-      <div id="paymentInfo" style="display:none; margin-top:1rem;">
-        <p><strong>Send Litecoin to:</strong></p>
-        <code id="ltcAddress">Loading...</code>
-        <div style="margin-top: 10px;">
-          <img id="qrImage" src="" alt="QR Code" width="150"/>
-        </div>
-        <p>Confirmation will be sent to your email.</p>
-      </div>
-    </section>
-  </main>
-
+<form id="payForm">
+<input id="email" placeholder="Enter your email" required="" type="email">
+<button class="btn" type="submit">Get Payment Link</button>
+</input></form>
+<div id="paymentInfo" style="display:none; margin-top:1rem;">
+<p><strong>Send Litecoin to:</strong></p>
+<code id="ltcAddress">Loading...</code>
+<div style="margin-top: 10px;">
+<img alt="QR Code" id="qrImage" src="" width="150">
+</img></div>
+<p>Confirmation will be sent to your email.</p>
+</div>
+</section>
+</main>
 <footer>
-  <p>
-    &copy; 2025 NeuroX AGI. All rights reserved. |
+<p>
+    © 2025 NeuroX AGI. All rights reserved. |
     Contact: <a href="mailto:mrxai-architect@tuta.io">mrxai-architect@tuta.io</a> |
     Telegram: <a href="https://t.me/NoraxSupportBot" target="_blank">@NoraxSupportBot</a>
-  </p>
+</p>
 </footer>
-
 <script>
   function goToDashboard() {
     const email = document.getElementById("dashboardEmail").value.trim();
@@ -228,6 +214,5 @@
     audio.muted = !audio.muted;
   }
 </script>
-
 </body>
 </html>

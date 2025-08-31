@@ -1,7 +1,53 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: #00ff00;
+      font-family: 'Courier New', monospace;
+      overflow-x: hidden;
+    }
+  
+    /* container افکت و متن */
+    #heroSection {
+      position: relative;
+      height: 200px; /* ارتفاع متن و افکت */
+      text-align: center;
+      overflow: visible;
+      margin-bottom: 10px;
+    }
+  
+    #matrixCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+  
+    #matrixText {
+      position: relative;
+      z-index: 1;
+      white-space: pre-wrap;
+      display: inline-block;
+      font-size: 1.8em;
+      color: #00ff00;
+      text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 20px #00ff00;
+      overflow: hidden;
+      line-height: 1.5em;
+    }
+  
+    .shard {
+      position: absolute;
+      color: #ff0000;
+      font-family: 'Courier New', monospace;
+      pointer-events: none;
+      user-select: none;
+    }
+  </style>
   <style>
   #tiresult {
     text-align: center;   /* وسط چین کردن متن داخل <pre> */
@@ -86,6 +132,10 @@
   </script>
 </head>
 <body>
+  <div id="heroSection">
+    <canvas id="matrixCanvas"></canvas>
+    <pre id="matrixText"></pre>
+  </div>
 <!-- 🎵 Background Music -->
 <audio id="bgMusic" loop="">
 <source src="https://mr-xneuro.github.io/neurobet-demo/67573331da66b.mp3" type="audio/mpeg"/>
@@ -95,22 +145,21 @@
 <div onclick="toggleAudio()" style="position: fixed; bottom: 15px; right: 15px; background-color: #111; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 5px; padding: 6px 10px; font-size: 14px; cursor: pointer; z-index: 999;">
     🔊 Mute/Unmute
   </div>
-<header style="text-align:center; margin-bottom:30px;">
-  <pre id="matrixText" style="
-      font-family: 'Courier New', monospace;
-      font-size: 1.5em;
-      color: #00ff00;
-      text-shadow:
-        0 0 5px #00ff00,
-        0 0 10px #00ff00,
-        0 0 20px #00ff00,
-        0 0 40px #00ff00;
-      white-space: pre-wrap;
-      overflow: hidden;
-      border-right: .15em solid #00ff00;
-      display: inline-block;
-  "></pre>
-</header>
+  <header style="text-align:center; margin-bottom:30px;">
+    <pre id="matrixText" style="
+        font-family: 'Courier New', monospace;
+        font-size: 1.5em;
+        color: #00ff00;
+        text-shadow:
+          0 0 5px #00ff00,
+          0 0 10px #00ff00,
+          0 0 20px #00ff00;
+        white-space: pre-wrap;
+        overflow: hidden;
+        display: inline-block;
+    "></pre>
+  </header>
+
 <main>
 <section class="affiliate">
 <h2>🤝 Become an Affiliate</h2>
@@ -206,44 +255,7 @@ The bot adapts to market conditions, detects deceptive patterns, and self-regula
 </p>
 </footer>
 <script>
-  const textLines = [
-    "NEUROX",
-    "Welcome to the era of self-aware intelligent robots!",
-    "Here you witness something truly original that has never been copied anywhere.",
-    "GOOD News! Great Update: Dice Pattern Decryption Unit – 1.6% Daily ROI"
-  ];
 
-  const el = document.getElementById("matrixText");
-  let lineIndex = 0;
-  let charIndex = 0;
-
-  function typeLine() {
-    if (lineIndex < textLines.length) {
-      const currentLine = textLines[lineIndex];
-      if (charIndex < currentLine.length) {
-        el.innerHTML += currentLine.charAt(charIndex);
-        charIndex++;
-        setTimeout(typeLine, 50); // سرعت تایپ هر کاراکتر
-      } else {
-        el.innerHTML += "\n"; // رفتن به خط بعد
-        lineIndex++;
-        charIndex = 0;
-        setTimeout(typeLine, 300); // فاصله بین سطرها
-      }
-    } else {
-      // افکت چشمک‌زن cursor
-      setInterval(() => {
-        if (el.style.borderRightColor === 'transparent') {
-          el.style.borderRightColor = '#00ff00';
-        } else {
-          el.style.borderRightColor = 'transparent';
-        }
-      }, 500);
-    }
-  }
-
-  typeLine();
-  
   function goToDashboard() {
     const email = document.getElementById("dashboardEmail").value.trim();
     if (!email || !email.includes("@")) {
@@ -315,6 +327,99 @@ The bot adapts to market conditions, detects deceptive patterns, and self-regula
     const audio = document.getElementById("bgMusic");
     audio.muted = !audio.muted;
   }
+  const textLines = [
+  "NEUROX",
+  "Welcome to the era of self-aware intelligent robots!",
+  "Here you witness something truly original that has never been copied anywhere.",
+  "GOOD News! Great Update: Dice Pattern Decryption Unit – 1.6% Daily ROI"
+];
+
+const el = document.getElementById("matrixText");
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeLine() {
+  if (lineIndex < textLines.length) {
+    const currentLine = textLines[lineIndex];
+    if (charIndex < currentLine.length) {
+      el.innerHTML += currentLine.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeLine, 50);
+    } else {
+      el.innerHTML += "\n";
+      lineIndex++;
+      charIndex = 0;
+      setTimeout(typeLine, 300);
+    }
+  } else {
+    triggerShatter();
+  }
+}
+
+/* افکت شیشه خوردن */
+function triggerShatter() {
+  const text = el.innerText;
+  const rect = el.getBoundingClientRect();
+  el.style.visibility = 'hidden';
+  for (let i = 0; i < text.length; i++) {
+    if(text[i]==="\n") continue;
+    const span = document.createElement('span');
+    span.className = 'shard';
+    span.innerText = text[i];
+    document.getElementById('heroSection').appendChild(span);
+
+    span.style.left = (rect.left + Math.random()*rect.width) + 'px';
+    span.style.top = (rect.top + Math.random()*rect.height) + 'px';
+
+    const dx = (Math.random()-0.5)*10;
+    const dy = (Math.random()-1.5)*10;
+    const rot = (Math.random()-0.5)*360;
+
+    span.animate([
+      { transform: 'translate(0px,0px) rotate(0deg)', opacity: 1 },
+      { transform: `translate(${dx*50}px,${dy*50}px) rotate(${rot}deg)`, opacity:0 }
+    ], { duration: 1200, easing: 'ease-out' });
+
+    setTimeout(() => span.remove(), 1200);
+  }
+  setTimeout(() => {
+    el.innerHTML = '';
+    el.style.visibility = 'visible';
+    lineIndex = 0;
+    charIndex = 0;
+    typeLine();
+  }, 1400);
+}
+
+typeLine();
+
+/* افکت ماتریکس پشت متن */
+const canvas = document.getElementById('matrixCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = document.getElementById('heroSection').offsetHeight;
+
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+  ctx.fillStyle = 'rgba(0,0,0,0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#0F0';
+  ctx.font = fontSize + 'px monospace';
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters.charAt(Math.floor(Math.random()*letters.length));
+    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
+
+    if (drops[i]*fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
+  }
+}
+
+setInterval(draw, 50);
 </script>
 </body>
 </html>

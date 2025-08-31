@@ -95,9 +95,21 @@
 <div onclick="toggleAudio()" style="position: fixed; bottom: 15px; right: 15px; background-color: #111; color: #00ffcc; border: 1px solid #00ffcc; border-radius: 5px; padding: 6px 10px; font-size: 14px; cursor: pointer; z-index: 999;">
     🔊 Mute/Unmute
   </div>
-<header>
-<h1>NEUROX</h1>
-<p>GOOD News Great Update ! Dice Pattern Decryption Unit 1.6% Daily ROI</p>
+<header style="text-align:center; margin-bottom:30px;">
+  <pre id="matrixText" style="
+      font-family: 'Courier New', monospace;
+      font-size: 1.5em;
+      color: #00ff00;
+      text-shadow:
+        0 0 5px #00ff00,
+        0 0 10px #00ff00,
+        0 0 20px #00ff00,
+        0 0 40px #00ff00;
+      white-space: pre-wrap;
+      overflow: hidden;
+      border-right: .15em solid #00ff00;
+      display: inline-block;
+  "></pre>
 </header>
 <main>
 <section class="affiliate">
@@ -194,6 +206,44 @@ The bot adapts to market conditions, detects deceptive patterns, and self-regula
 </p>
 </footer>
 <script>
+  const textLines = [
+    "NEUROX",
+    "Welcome to the era of self-aware intelligent robots!",
+    "Here you witness something truly original that has never been copied anywhere.",
+    "GOOD News! Great Update: Dice Pattern Decryption Unit – 1.6% Daily ROI"
+  ];
+
+  const el = document.getElementById("matrixText");
+  let lineIndex = 0;
+  let charIndex = 0;
+
+  function typeLine() {
+    if (lineIndex < textLines.length) {
+      const currentLine = textLines[lineIndex];
+      if (charIndex < currentLine.length) {
+        el.innerHTML += currentLine.charAt(charIndex);
+        charIndex++;
+        setTimeout(typeLine, 50); // سرعت تایپ هر کاراکتر
+      } else {
+        el.innerHTML += "\n"; // رفتن به خط بعد
+        lineIndex++;
+        charIndex = 0;
+        setTimeout(typeLine, 300); // فاصله بین سطرها
+      }
+    } else {
+      // افکت چشمک‌زن cursor
+      setInterval(() => {
+        if (el.style.borderRightColor === 'transparent') {
+          el.style.borderRightColor = '#00ff00';
+        } else {
+          el.style.borderRightColor = 'transparent';
+        }
+      }, 500);
+    }
+  }
+
+  typeLine();
+  
   function goToDashboard() {
     const email = document.getElementById("dashboardEmail").value.trim();
     if (!email || !email.includes("@")) {

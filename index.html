@@ -455,6 +455,47 @@ function goToDashboard(){
   window.location.href = `https://mr-xneuro.github.io/neurobet-demo/affiliate-dashboard?email=${encodeURIComponent(email)}`;
 }
 </script>
+<!-- Interactive Footer -->
+<footer style="background: rgba(0,255,170,0.05); padding: 40px 20px; border-top: 1px solid rgba(0,255,170,0.2); margin-top: 60px; text-align:center; position:relative;">
+  <p style="font-size: 1em; margin-bottom: 15px;">“Forged in silence. Released with precision.” — Mr. X</p>
+  
+  <!-- Contact Buttons -->
+  <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom: 15px;">
+    <a href="mailto:mrxai-architect@tuta.io" style="text-decoration:none;">
+      <div class="footer-button">
+        📧 Email
+      </div>
+    </a>
+    <a href="https://t.me/NoraxSupportBot" target="_blank" style="text-decoration:none;">
+      <div class="footer-button">
+        💬 Telegram
+      </div>
+    </a>
+  </div>
+  
+  <p style="font-size:0.9em; color:#888;">&copy; 2026 NeuroX Genesis — All rights reserved.</p>
+</footer>
 
+<style>
+/* Footer Buttons */
+.footer-button {
+  background-color: rgba(0,255,170,0.1);
+  color: #00e676;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,255,170,0.1);
+}
+
+.footer-button:hover {
+  background-color: #00e676;
+  color: #0b0b0f;
+  box-shadow: 0 0 20px #00e676;
+  transform: translateY(-3px);
+}
+</style>
 </body>
 </html>

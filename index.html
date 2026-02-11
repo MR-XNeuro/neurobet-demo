@@ -423,16 +423,54 @@ document.getElementById("payForm").addEventListener("submit", async function(e){
   finally{ button.disabled=false; button.innerText=original; }
 });
 
+<!-- Affiliate Section -->
+<section class="affiliate" style="max-width:700px; margin:60px auto; padding:30px; background:rgba(0,255,170,0.03); border-radius:14px; text-align:center; box-shadow:0 0 30px rgba(0,255,170,0.15);">
+  <h2>🤝 Become an Affiliate</h2>
+  <p>Earn <strong>15% commission</strong> on every referral. Share your custom link and get paid in LTC.</p>
+  <p style="margin-top:5px; color:#00ffcc;">
+    All referred purchases are tracked by our server. You can access your dashboard anytime to monitor your referral statistics.
+    Every referred user who requests a license after purchase will contribute to your affiliate earnings automatically.
+  </p>
+  <form id="affiliateForm">
+    <input id="affiliateEmail" placeholder="Enter your email" required="" type="email" style="padding:10px; width:70%; border-radius:6px; border:none; margin-top:10px;"/>
+    <button type="submit" class="button" style="padding:10px 20px; margin-top:10px;">Generate Affiliate Link</button>
+  </form>
+  <div id="affiliateResult" style="margin-top:15px; display:none;">
+    <p>Your referral link:</p>
+    <input id="affiliateLink" readonly="" style="width:100%; padding:10px; border-radius:6px; border:none;" type="text"/>
+  </div>
+</section>
+
+<section class="affiliate-dashboard-access" style="max-width:700px; margin:40px auto; padding:30px; background:rgba(0,255,170,0.03); border-radius:14px; text-align:center; box-shadow:0 0 30px rgba(0,255,170,0.1);">
+  <h2>📊 View Your Affiliate Dashboard</h2>
+  <p>Enter your affiliate email to view your performance:</p>
+  <p style="margin-top:5px; color:#00ffcc;">
+    Once your earnings reach <strong>0.5 LTC</strong>, please contact our support team to request your payout.
+  </p>
+  <input id="dashboardEmail" placeholder="your@email.com" required="" type="email" style="padding:10px; width:70%; border-radius:6px; border:none; margin-top:10px;"/>
+  <button onclick="goToDashboard()" class="button" style="margin-top:10px;">Go to Dashboard</button>
+</section>
+
+<script>
 /* ---------- Referral ---------- */
-document.getElementById("affiliateForm").addEventListener("submit",function(e){
+document.getElementById("affiliateForm").addEventListener("submit", function(e){
   e.preventDefault();
-  const email=document.getElementById("affiliateEmail").value.trim();
-  const link=`https://mr-xneuro.github.io/neurobet-demo/?ref=${encodeURIComponent(email)}`;
-  const input=document.getElementById("affiliateLink");
-  input.value=link;
-  input.style.display="block";
-  document.getElementById("affiliateResult").style.display="block";
+  const email = document.getElementById("affiliateEmail").value.trim();
+  const link = `https://mr-xneuro.github.io/neurobet-demo/?ref=${encodeURIComponent(email)}`;
+  const input = document.getElementById("affiliateLink");
+  input.value = link;
+  input.style.display = "block";
+  document.getElementById("affiliateResult").style.display = "block";
 });
+
+/* ---------- Dashboard ---------- */
+function goToDashboard(){
+  const email = document.getElementById("dashboardEmail").value.trim();
+  if(!email){ alert("Please enter your email"); return; }
+  // مسیر واقعی داشبورد جایگزین شود
+  window.location.href = `https://mr-xneuro.github.io/neurobet-demo/affiliate-dashboard?email=${encodeURIComponent(email)}`;
+}
 </script>
+
 </body>
 </html>

@@ -232,57 +232,63 @@ function draw(){
 }
 setInterval(draw,50);
 
-/* ---------- Typewriter + Shatter ---------- */
-const textLines=[
+/* ---------- Matrix + Typewriter + Cinematic Shatter ---------- */
+const el = document.getElementById("matrixText");
+const textLines = [
   "NEUROX",
   "Welcome to the era of self-aware intelligent robots!",
   "Here you witness something truly original that has never been copied anywhere.",
   "Enjoy endless profits with the ultra-powerful NeuroX bot!"
 ];
-const el=document.getElementById("matrixText");
-let lineIndex=0,charIndex=0;
-function typeLine(){
-  if(lineIndex<textLines.length){
-    const currentLine=textLines[lineIndex];
-    if(charIndex<currentLine.length){
-      el.innerHTML+=currentLine.charAt(charIndex);
+
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeLineCinematic() {
+  if (lineIndex < textLines.length) {
+    const currentLine = textLines[lineIndex];
+    if (charIndex < currentLine.length) {
+      const span = document.createElement('span');
+      span.innerText = currentLine.charAt(charIndex);
+      span.style.opacity = 0;
+      span.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      span.style.transform = `translateY(${Math.random()*20 - 10}px)`;
+      el.appendChild(span);
+      setTimeout(() => { span.style.opacity = 1; span.style.transform = 'translateY(0)'; }, 20);
       charIndex++;
-      setTimeout(typeLine,50);
+      setTimeout(typeLineCinematic, 50 + Math.random() * 50); // random typing speed
     } else {
-      el.innerHTML+="\n";
+      el.appendChild(document.createElement('br'));
       lineIndex++;
-      charIndex=0;
-      setTimeout(typeLine,300);
+      charIndex = 0;
+      setTimeout(typeLineCinematic, 400);
     }
-  } else { triggerShatter(); }
+  } else {
+    triggerShatterCinematic();
+  }
 }
 
-function triggerShatter(){
-  const text=el.innerText;
-  const rect=el.getBoundingClientRect();
-  el.style.visibility='hidden';
-  for(let i=0;i<text.length;i++){
-    if(text[i]==="\n") continue;
-    const span=document.createElement('span');
-    span.className='shard';
-    span.innerText=text[i];
-    document.getElementById('heroSection').appendChild(span);
-    const dx=(Math.random()-0.5)*10;
-    const dy=(Math.random()-1.5)*10;
-    const rot=(Math.random()-0.5)*360;
-    span.style.left=(rect.left + Math.random()*rect.width)+'px';
-    span.style.top=(rect.top + Math.random()*rect.height/2)+'px';
-    span.animate([{transform:'translate(0px,0px) rotate(0deg)',opacity:1},
-                  {transform:`translate(${dx*50}px,${dy*50}px) rotate(${rot}deg)`,opacity:0}],
-                  {duration:1200,easing:'ease-out'});
-    setTimeout(()=>span.remove(),1200);
-  }
-  setTimeout(()=>{
-    el.innerHTML=''; el.style.visibility='visible';
-    lineIndex=0; charIndex=0; typeLine();
-  },1400);
+function triggerShatterCinematic() {
+  const spans = Array.from(el.querySelectorAll('span'));
+  spans.forEach(span => {
+    const dx = (Math.random() - 0.5) * 200;
+    const dy = (Math.random() - 1.5) * 200;
+    const rot = (Math.random() - 0.5) * 720;
+    span.style.transition = 'transform 1.2s ease-out, opacity 1.2s ease-out';
+    span.style.transform = `translate(${dx}px,${dy}px) rotate(${rot}deg)`;
+    span.style.opacity = 0;
+  });
+  setTimeout(() => {
+    el.innerHTML = '';
+    lineIndex = 0;
+    charIndex = 0;
+    typeLineCinematic();
+  }, 1400);
 }
-typeLine();
+
+// start cinematic typewriter
+typeLineCinematic();
+
 
 /* ---------- Audio ---------- */
 const audio=document.getElementById("bgMusic");

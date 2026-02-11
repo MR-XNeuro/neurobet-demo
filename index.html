@@ -9,173 +9,39 @@
 <meta name="author" content="NeuroX AGI"/>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet"/>
 <style>
-  body {
-    margin:0;
-    font-family:'Courier Prime', monospace;
-    background:#000;
-    color:#00ff00;
-    overflow-x:hidden;
-  }
-  a{text-decoration:none;}
-
-  /* Hero Section */
-  #heroSection {
-    position:relative;
-    text-align:center;
-    overflow:hidden;
-    padding:60px 20px 40px;
-    background:linear-gradient(135deg,#0a0a0a,#111);
-  }
-
-  #heroSection img {
-    width:100%;
-    max-height:400px;
-    object-fit:cover;
-    display:block;
-    border-radius:8px;
-  }
-
-  #matrixCanvas {
-    position:absolute;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-    opacity:0.25;
-    pointer-events:none;
-  }
-
-  #matrixText {
-    position:absolute;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:2;
-    color:#00ff00;
-    font-size:1.3em;
-    text-shadow:0 0 5px #00ff00,0 0 10px #00ff00;
-    white-space:pre-wrap;
-    max-width:90%;
-    text-align:center;
-  }
-
-  .hero-title {
-    font-size:2.8em;
-    font-weight:800;
-    color:#00ffd1;
-    margin:20px 0 10px;
-    text-shadow:0 0 10px #00ffd1;
-    position:relative;
-    z-index:2;
-  }
-
-  .hero-subtitle {
-    font-size:1.2em;
-    font-style:italic;
-    color:#aaffcc;
-    margin-bottom:30px;
-    position:relative;
-    z-index:2;
-  }
-
-  /* Video + Trust Box */
-  .hero-main {
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    flex-wrap:wrap;
-    gap:40px;
-    position:relative;
-    z-index:2;
-  }
-
-  .hero-video {
-    max-width:640px;
-    width:100%;
-    border-radius:8px;
-    overflow:hidden;
-    box-shadow:0 0 20px rgba(0,255,200,0.2);
-  }
-
-  .hero-trust {
-    max-width:300px;
-    color:#00ffcc;
-    font-size:0.95rem;
-    line-height:1.5;
-  }
-
-  /* Demo / Trial / License Boxes */
-  .access-boxes {
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:40px;
-    position:relative;
-    z-index:2;
-  }
-
-  .access-box {
-    flex:1 1 180px;
-    padding:20px;
-    border-radius:12px;
-    background:rgba(0,255,170,0.05);
-    border:1px solid rgba(0,255,170,0.2);
-    text-align:center;
-    color:#00ffd1;
-    box-shadow:0 0 10px rgba(0,255,170,0.1);
-  }
-
-  .access-box h3 { margin-bottom:10px; font-size:1.2em; }
-  .access-box p { font-size:0.9em; line-height:1.4em; }
-
-  /* Shatter effect */
-  .shard {
-    position:absolute;
-    color:#ff0000;
-    font-family:'Courier Prime', monospace;
-    pointer-events:none;
-    user-select:none;
-  }
-
-  /* Audio button */
-  #audioToggle {
-    position:fixed;
-    bottom:15px;
-    right:15px;
-    background:#111;
-    color:#00ffcc;
-    border:1px solid #00ffcc;
-    border-radius:5px;
-    padding:6px 10px;
-    font-size:14px;
-    cursor:pointer;
-    z-index:9999;
-  }
+  body { margin:0; font-family:'Courier Prime', monospace; background:#000; color:#00ff00; overflow-x:hidden;}
+  a { text-decoration:none; }
+  #heroSection { position:relative; text-align:center; padding:60px 20px 40px; overflow:hidden; background: linear-gradient(135deg,#0a0a0a,#111);}
+  #matrixCanvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;}
+  #matrixText { position:relative; z-index:1; font-size:2em; white-space:pre-wrap; color:#00ff00; text-shadow:0 0 5px #00ff00,0 0 10px #00ff00,0 0 20px #00ff00; display:inline-block; line-height:1.5em; overflow:hidden;}
+  .hero-title { font-size:2.8em; font-weight:800; color:#00ffd1; margin-bottom:10px; text-shadow:0 0 10px #00ffd1;}
+  .hero-subtitle { font-size:1.2em; font-style:italic; color:#aaffcc; margin-bottom:30px;}
+  .hero-main { display:flex; justify-content:center; align-items:flex-start; flex-wrap:wrap; gap:40px;}
+  .hero-video { max-width:640px; width:100%; border-radius:8px; overflow:hidden; box-shadow:0 0 20px rgba(0,255,200,0.2);}
+  .hero-trust { max-width:300px; color:#00ffcc; font-size:0.95rem; line-height:1.5;}
+  .access-boxes { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-top:40px;}
+  .access-box { flex:1 1 180px; padding:20px; border-radius:12px; background:rgba(0,255,170,0.05); border:1px solid rgba(0,255,170,0.2); text-align:center; color:#00ffd1; box-shadow:0 0 10px rgba(0,255,170,0.1);}
+  .access-box h3 { margin-bottom:10px; font-size:1.2em;}
+  .access-box p { font-size:0.9em; line-height:1.4em;}
+  .shard { position:absolute; color:#ff0000; font-family:'Courier Prime', monospace; pointer-events:none; user-select:none;}
+  #audioToggle { position:fixed; bottom:15px; right:15px; background:#111; color:#00ffcc; border:1px solid #00ffcc; border-radius:5px; padding:6px 10px; font-size:14px; cursor:pointer; z-index:9999;}
+  .btn { background:#00ffd1; color:#000; padding:10px 15px; margin-top:10px; display:inline-block; border-radius:6px; font-weight:bold; }
+  .demo-video iframe { border-radius:8px; box-shadow:0 0 10px rgba(0,255,255,0.2);}
+  .premium input, .premium button { padding:8px; margin-top:5px; border-radius:5px; border:1px solid #00ffd1; background:#000; color:#00ffd1; }
 </style>
 </head>
 <body>
 
 <section id="heroSection">
-  <!-- Background Image -->
-  <img src="https://mr-xneuro.github.io/neurobet-demo/NeuroX.png" alt="NeuroX Banner"/>
-
-  <!-- Matrix Canvas -->
   <canvas id="matrixCanvas"></canvas>
-
-  <!-- Typewriter Text -->
   <pre id="matrixText"></pre>
-
   <div class="hero-title">NeuroX in Live Operation (Real Session)</div>
   <div class="hero-subtitle">No source code · No downloads · Electron-injected AI</div>
 
   <div class="hero-main">
-    <!-- Video -->
     <div class="hero-video">
-      <iframe src="https://archive.org/embed/rec-0005_202511" allowfullscreen frameborder="0" width="100%" height="360"></iframe>
+      <iframe allowfullscreen frameborder="0" height="360" src="https://archive.org/embed/rec-0005_202511" width="100%"></iframe>
     </div>
-
-    <!-- Trust Box -->
     <div class="hero-trust">
       <p><em>This is not a browser script.</em></p>
       <p><em>Nothing runs in your browser.</em></p>
@@ -184,7 +50,6 @@
     </div>
   </div>
 
-  <!-- Demo/Trial/License Boxes -->
   <div class="access-boxes">
     <div class="access-box" style="border-color:#33ff33;">
       <h3>🟢 Demo Video</h3>
@@ -201,24 +66,84 @@
   </div>
 </section>
 
-<!-- Background Music -->
+<section class="demo-video" style="margin:30px auto; max-width:600px; text-align:center; background:#111; padding:15px; border-radius:8px; box-shadow:0 0 10px rgba(0,255,255,0.2);">
+  <h3 style="color:#00ffcc; margin-bottom:10px;">🎥 Watch NeuroX AI in Action</h3>
+  <iframe allowfullscreen frameborder="0" height="315" src="https://archive.org/embed/rec-0005_202511" width="100%"></iframe>
+
+  <h4 style="color:#00ffcc; margin-top:20px; margin-bottom:10px;">🎓 Trial Version Tutorial</h4>
+  <iframe allowfullscreen frameborder="0" height="315" src="https://archive.org/embed/trial_202510" width="100%"></iframe>
+
+  <h4 style="color:#ffeb3b; margin-top:20px; margin-bottom:10px;">🎓 License Version Tutorial</h4>
+  <iframe allowfullscreen frameborder="0" height="315" src="https://archive.org/embed/license_202510" width="100%"></iframe>
+</section>
+
+<section class="trial" style="text-align:center; margin-top:20px;">
+  <h2>🧪 Free 6-Hour Trial</h2>
+  <p>No registration required. Just download and run!</p>
+  <p>Note: NeuroX Refresh every 100 wins</p>
+  <a class="btn" href="https://archive.org/download/neuro-xtrial-portable/NeuroXTrialPortable.rar" target="_blank">Download Trial Program</a>
+  <a class="btn" href="https://archive.org/download/neuro-xlicense-portable/NeuroXlicensePortable.rar" target="_blank">🔐 Download License Program</a>
+</section>
+
+<section class="premium" style="text-align:center; margin-top:40px;">
+  <h2>💳 Premium Version</h2>
+  <p>💳 Buy 1-month access. Pay in Litecoin (LTC) <span style="margin-left:10px;">💰 Price: <strong>1 LTC</strong></span></p>
+  <ul>
+    <li>Includes full feature set + base bet customization</li>
+    <p style="margin-top:5px; color:#00ffcc;">After purchase, send base bet + email to support.</p>
+    <li>Secure, anti-crack licensing system</li>
+  </ul>
+  <p style="margin-top:10px; color:#00ffcc;">
+    After completing payment, confirmation email sent automatically.<br/>
+    If not received in <strong>30 minutes</strong>, email your <strong>Transaction ID</strong> to support.
+  </p>
+  <form id="payForm">
+    <input id="email" type="email" placeholder="Enter your email" required/>
+    <button class="btn" type="submit">Get Payment Link</button>
+  </form>
+  <div id="paymentInfo" style="display:none; margin-top:1rem;">
+    <p><strong>Send Litecoin to:</strong></p>
+    <code id="ltcAddress">Loading...</code>
+    <div style="margin-top:10px;">
+      <img alt="QR Code" id="qrImage" src="" width="150"/>
+    </div>
+    <p>Confirmation will be sent to your email.</p>
+  </div>
+</section>
+
+<section class="affiliate" style="text-align:center; margin-top:40px;">
+  <h2>🤝 Referral Program</h2>
+  <p>Enter your email to get your personal referral link:</p>
+  <form id="affiliateForm">
+    <input id="affiliateEmail" type="email" placeholder="Enter your email" required/>
+    <button class="btn" type="submit">Get Referral Link</button>
+  </form>
+  <input id="affiliateLink" type="text" readonly style="margin-top:10px; width:80%;"/>
+  <div id="affiliateResult" style="display:none; margin-top:10px;">
+    <p>Share this link with friends. Earn commission for each paid referral.</p>
+  </div>
+</section>
+
 <audio id="bgMusic" loop>
   <source src="https://mr-xneuro.github.io/neurobet-demo/67573331da66b.mp3" type="audio/mpeg"/>
 </audio>
 <div id="audioToggle" onclick="toggleAudio()">🔊 Mute/Unmute</div>
 
+<footer style="text-align:center; margin-top:50px; color:#00ffcc; padding:20px 0; border-top:1px solid #00ffcc;">
+<p>© 2025 NeuroX AGI. All rights reserved. | Contact: <a href="https://www.bitbrief.click/contact-us/" target="_blank">Contact Page</a> | Telegram: <a href="https://t.me/NoraxSupportBot" target="_blank">@NoraxSupportBot</a></p>
+</footer>
+
 <script>
-/* ---------- Matrix Canvas ---------- */
+/* ---------- Matrix Effect ---------- */
 const canvas=document.getElementById('matrixCanvas');
 const ctx=canvas.getContext('2d');
 canvas.width=window.innerWidth;
 canvas.height=document.getElementById('heroSection').offsetHeight;
 const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
 const fontSize=16;
-const columns=Math.floor(canvas.width/fontSize);
-const drops=Array(columns).fill(1);
-
-function draw(){
+const columns=canvas.width/fontSize;
+const drops=Array(Math.floor(columns)).fill(1);
+function drawMatrix(){
   ctx.fillStyle='rgba(0,0,0,0.05)';
   ctx.fillRect(0,0,canvas.width,canvas.height);
   ctx.fillStyle='#0F0';
@@ -226,19 +151,14 @@ function draw(){
   for(let i=0;i<drops.length;i++){
     const text=letters.charAt(Math.floor(Math.random()*letters.length));
     ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-    if(drops[i]*fontSize>canvas.height/2 && Math.random()>0.975) drops[i]=0;
+    if(drops[i]*fontSize>canvas.height && Math.random()>0.975)drops[i]=0;
     drops[i]++;
   }
 }
-setInterval(draw,50);
+setInterval(drawMatrix,50);
 
 /* ---------- Typewriter + Shatter ---------- */
-const textLines=[
-  "NEUROX",
-  "Welcome to the era of self-aware intelligent robots!",
-  "Here you witness something truly original that has never been copied anywhere.",
-  "Enjoy endless profits with the ultra-powerful NeuroX bot!"
-];
+const textLines=["NEUROX","Welcome to the era of self-aware intelligent robots!","Here you witness something truly original that has never been copied anywhere.","Enjoy endless profits with the ultra-powerful NeuroX bot!"];
 const el=document.getElementById("matrixText");
 let lineIndex=0,charIndex=0;
 function typeLine(){
@@ -248,18 +168,13 @@ function typeLine(){
       el.innerHTML+=currentLine.charAt(charIndex);
       charIndex++;
       setTimeout(typeLine,50);
-    } else {
-      el.innerHTML+="\n";
-      lineIndex++;
-      charIndex=0;
-      setTimeout(typeLine,300);
+    }else{
+      el.innerHTML+="\n"; lineIndex++; charIndex=0; setTimeout(typeLine,300);
     }
-  } else { triggerShatter(); }
+  }else{triggerShatter();}
 }
-
 function triggerShatter(){
   const text=el.innerText;
-  const rect=el.getBoundingClientRect();
   el.style.visibility='hidden';
   for(let i=0;i<text.length;i++){
     if(text[i]==="\n") continue;
@@ -267,30 +182,53 @@ function triggerShatter(){
     span.className='shard';
     span.innerText=text[i];
     document.getElementById('heroSection').appendChild(span);
-    const dx=(Math.random()-0.5)*10;
-    const dy=(Math.random()-1.5)*10;
-    const rot=(Math.random()-0.5)*360;
-    span.style.left=(rect.left + Math.random()*rect.width)+'px';
-    span.style.top=(rect.top + Math.random()*rect.height/2)+'px';
-    span.animate([{transform:'translate(0px,0px) rotate(0deg)',opacity:1},
-                  {transform:`translate(${dx*50}px,${dy*50}px) rotate(${rot}deg)`,opacity:0}],
-                  {duration:1200,easing:'ease-out'});
+    const dx=(Math.random()-0.5)*10,dy=(Math.random()-1.5)*10,rot=(Math.random()-0.5)*360;
+    span.animate([{transform:'translate(0px,0px) rotate(0deg)',opacity:1},{transform:`translate(${dx*50}px,${dy*50}px) rotate(${rot}deg)`,opacity:0}],{duration:1200,easing:'ease-out'});
     setTimeout(()=>span.remove(),1200);
   }
-  setTimeout(()=>{
-    el.innerHTML=''; el.style.visibility='visible';
-    lineIndex=0; charIndex=0; typeLine();
-  },1400);
+  setTimeout(()=>{el.innerHTML=''; el.style.visibility='visible'; lineIndex=0; charIndex=0; typeLine();},1400);
 }
 typeLine();
 
 /* ---------- Audio ---------- */
 const audio=document.getElementById("bgMusic");
-document.body.addEventListener("click",function playOnce(){
-  audio.play().catch(()=>{});
-  document.body.removeEventListener("click",playOnce);
-});
+document.body.addEventListener("click",function playOnce(){audio.play().catch(()=>{}); document.body.removeEventListener("click",playOnce);});
 function toggleAudio(){ audio.muted=!audio.muted; }
+
+/* ---------- Payment Form ---------- */
+document.getElementById("payForm").addEventListener("submit",async function(e){
+  e.preventDefault();
+  const email=document.getElementById("email").value;
+  const refCode=localStorage.getItem('affiliate_ref');
+  const button=document.querySelector("#payForm button");
+  const originalText=button.innerText;
+  button.disabled=true; button.innerText="Please wait...";
+  try{
+    const res=await fetch("https://neurobackend.onrender.com/order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email,ref:refCode})});
+    if(res.ok){
+      const data=await res.json();
+      document.getElementById("ltcAddress").innerText=data.address;
+      document.getElementById("qrImage").src=data.qr;
+      document.getElementById("paymentInfo").style.display="block";
+    }else alert("Something went wrong. Try again later.");
+  }catch(err){ alert("Network error. Please try again."); }
+  finally{ button.disabled=false; button.innerText=originalText; }
+});
+
+/* ---------- Referral ---------- */
+const urlParams=new URLSearchParams(window.location.search);
+const ref=urlParams.get('ref');
+if(ref) localStorage.setItem('affiliate_ref',ref);
+
+document.getElementById("affiliateForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const email=document.getElementById("affiliateEmail").value.trim();
+  const encodedEmail=encodeURIComponent(email);
+  const affiliateLink=`https://mr-xneuro.github.io/neurobet-demo/?ref=${encodedEmail}`;
+  document.getElementById("affiliateLink").value=affiliateLink;
+  document.getElementById("affiliateResult").style.display="block";
+});
 </script>
+
 </body>
 </html>

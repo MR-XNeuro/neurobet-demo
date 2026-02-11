@@ -9,173 +9,223 @@
 <meta name="author" content="NeuroX AGI"/>
 <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" rel="stylesheet"/>
 <style>
-  body {
-    margin:0;
-    font-family:'Courier Prime', monospace;
-    background:#000;
-    color:#00ff00;
-    overflow-x:hidden;
-  }
-  a{text-decoration:none;}
+body {
+  margin:0;
+  font-family:'Courier Prime', monospace;
+  background:#000;
+  color:#00ff00;
+  overflow-x:hidden;
+}
+a{text-decoration:none;}
 
-  /* Hero Section */
-  #heroSection {
-    position:relative;
-    text-align:center;
-    overflow:hidden;
-    padding:60px 20px 40px;
-    background:linear-gradient(135deg,#0a0a0a,#111);
-  }
+/* Hero Section */
+#heroSection {
+  position:relative;
+  text-align:center;
+  overflow:hidden;
+  padding:60px 20px 40px;
+  background:linear-gradient(135deg,#0a0a0a,#111);
+}
+#heroSection img {
+  width:100%;
+  max-height:400px;
+  object-fit:cover;
+  display:block;
+  border-radius:8px;
+}
+#matrixCanvas {
+  position:absolute;
+  top:0; left:0;
+  width:100%;
+  height:100%;
+  z-index:0;
+  opacity:0.25;
+  pointer-events:none;
+}
+#matrixText {
+  position:absolute;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  color:#00ff00;
+  font-size:1.3em;
+  text-shadow:0 0 5px #00ff00,0 0 10px #00ff00;
+  white-space:pre-wrap;
+  max-width:90%;
+  text-align:center;
+}
+.hero-title {
+  font-size:2.8em;
+  font-weight:800;
+  color:#00ffd1;
+  margin:20px 0 10px;
+  text-shadow:0 0 10px #00ffd1;
+  position:relative;
+  z-index:2;
+}
+.hero-subtitle {
+  font-size:1.2em;
+  font-style:italic;
+  color:#aaffcc;
+  margin-bottom:30px;
+  position:relative;
+  z-index:2;
+}
+.hero-main {
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:40px;
+  position:relative;
+  z-index:2;
+}
+.hero-video {
+  max-width:640px;
+  width:100%;
+  border-radius:8px;
+  overflow:hidden;
+  box-shadow:0 0 20px rgba(0,255,200,0.2);
+}
+.hero-trust {
+  max-width:300px;
+  color:#00ffcc;
+  font-size:0.95rem;
+  line-height:1.5;
+}
+.access-boxes {
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  flex-wrap:wrap;
+  margin-top:40px;
+  position:relative;
+  z-index:2;
+}
+.access-box {
+  flex:1 1 180px;
+  padding:20px;
+  border-radius:12px;
+  background:rgba(0,255,170,0.05);
+  border:1px solid rgba(0,255,170,0.2);
+  text-align:center;
+  color:#00ffd1;
+  box-shadow:0 0 10px rgba(0,255,170,0.1);
+}
+.access-box h3 { margin-bottom:10px; font-size:1.2em; }
+.access-box p { font-size:0.9em; line-height:1.4em; }
 
-  #heroSection img {
-    width:100%;
-    max-height:400px;
-    object-fit:cover;
-    display:block;
-    border-radius:8px;
-  }
+/* Trial / License Section */
+.trial-license {
+  max-width:800px;
+  margin:50px auto;
+  text-align:center;
+  color:#00ffcc;
+}
+.trial-license h2 { margin-bottom:15px; }
+.trial-license a {
+  display:inline-block;
+  margin:10px 5px;
+  padding:10px 15px;
+  background:#111;
+  border:1px solid #00ffcc;
+  color:#00ffcc;
+  border-radius:6px;
+  text-decoration:none;
+  transition:0.2s all;
+}
+.trial-license a:hover { background:#00ffcc; color:#000; }
 
-  #matrixCanvas {
-    position:absolute;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    z-index:0;
-    opacity:0.25;
-    pointer-events:none;
-  }
+/* License Purchase Section */
+.premium {
+  max-width:700px;
+  margin:50px auto;
+  padding:20px;
+  border:1px solid #00ffcc;
+  border-radius:8px;
+  text-align:left;
+  color:#00ffcc;
+}
+.premium h2 { margin-bottom:10px; text-align:center; }
+.premium p { margin-bottom:8px; }
+.premium input, .premium button {
+  padding:8px;
+  margin-top:5px;
+  width:100%;
+  max-width:300px;
+  border-radius:5px;
+  border:1px solid #00ffcc;
+  background:#111;
+  color:#00ffcc;
+}
+.premium button { cursor:pointer; }
+#paymentInfo { margin-top:10px; }
 
-  #matrixText {
-    position:absolute;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:2;
-    color:#00ff00;
-    font-size:1.3em;
-    text-shadow:0 0 5px #00ff00,0 0 10px #00ff00;
-    white-space:pre-wrap;
-    max-width:90%;
-    text-align:center;
-  }
+/* Referral Section */
+.referral {
+  max-width:700px;
+  margin:40px auto;
+  padding:20px;
+  border:1px dashed #00ffcc;
+  border-radius:8px;
+  text-align:center;
+}
+.referral input {
+  padding:8px;
+  width:80%;
+  max-width:300px;
+  border-radius:5px;
+  border:1px solid #00ffcc;
+  background:#111;
+  color:#00ffcc;
+}
+.referral button {
+  padding:8px 12px;
+  border-radius:5px;
+  border:1px solid #00ffcc;
+  background:#111;
+  color:#00ffcc;
+  cursor:pointer;
+}
 
-  .hero-title {
-    font-size:2.8em;
-    font-weight:800;
-    color:#00ffd1;
-    margin:20px 0 10px;
-    text-shadow:0 0 10px #00ffd1;
-    position:relative;
-    z-index:2;
-  }
+/* Shatter effect */
+.shard {
+  position:absolute;
+  color:#ff0000;
+  font-family:'Courier Prime', monospace;
+  pointer-events:none;
+  user-select:none;
+}
 
-  .hero-subtitle {
-    font-size:1.2em;
-    font-style:italic;
-    color:#aaffcc;
-    margin-bottom:30px;
-    position:relative;
-    z-index:2;
-  }
-
-  /* Video + Trust Box */
-  .hero-main {
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    flex-wrap:wrap;
-    gap:40px;
-    position:relative;
-    z-index:2;
-  }
-
-  .hero-video {
-    max-width:640px;
-    width:100%;
-    border-radius:8px;
-    overflow:hidden;
-    box-shadow:0 0 20px rgba(0,255,200,0.2);
-  }
-
-  .hero-trust {
-    max-width:300px;
-    color:#00ffcc;
-    font-size:0.95rem;
-    line-height:1.5;
-  }
-
-  /* Demo / Trial / License Boxes */
-  .access-boxes {
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    margin-top:40px;
-    position:relative;
-    z-index:2;
-  }
-
-  .access-box {
-    flex:1 1 180px;
-    padding:20px;
-    border-radius:12px;
-    background:rgba(0,255,170,0.05);
-    border:1px solid rgba(0,255,170,0.2);
-    text-align:center;
-    color:#00ffd1;
-    box-shadow:0 0 10px rgba(0,255,170,0.1);
-  }
-
-  .access-box h3 { margin-bottom:10px; font-size:1.2em; }
-  .access-box p { font-size:0.9em; line-height:1.4em; }
-
-  /* Shatter effect */
-  .shard {
-    position:absolute;
-    color:#ff0000;
-    font-family:'Courier Prime', monospace;
-    pointer-events:none;
-    user-select:none;
-  }
-
-  /* Audio button */
-  #audioToggle {
-    position:fixed;
-    bottom:15px;
-    right:15px;
-    background:#111;
-    color:#00ffcc;
-    border:1px solid #00ffcc;
-    border-radius:5px;
-    padding:6px 10px;
-    font-size:14px;
-    cursor:pointer;
-    z-index:9999;
-  }
+/* Audio button */
+#audioToggle {
+  position:fixed;
+  bottom:15px;
+  right:15px;
+  background:#111;
+  color:#00ffcc;
+  border:1px solid #00ffcc;
+  border-radius:5px;
+  padding:6px 10px;
+  font-size:14px;
+  cursor:pointer;
+  z-index:9999;
+}
 </style>
 </head>
 <body>
 
 <section id="heroSection">
-  <!-- Background Image -->
   <img src="https://mr-xneuro.github.io/neurobet-demo/NeuroX.png" alt="NeuroX Banner"/>
-
-  <!-- Matrix Canvas -->
   <canvas id="matrixCanvas"></canvas>
-
-  <!-- Typewriter Text -->
   <pre id="matrixText"></pre>
-
   <div class="hero-title">NeuroX in Live Operation (Real Session)</div>
   <div class="hero-subtitle">No source code · No downloads · Electron-injected AI</div>
-
   <div class="hero-main">
-    <!-- Video -->
     <div class="hero-video">
       <iframe src="https://archive.org/embed/rec-0005_202511" allowfullscreen frameborder="0" width="100%" height="360"></iframe>
     </div>
-
-    <!-- Trust Box -->
     <div class="hero-trust">
       <p><em>This is not a browser script.</em></p>
       <p><em>Nothing runs in your browser.</em></p>
@@ -183,8 +233,6 @@
       <p><em>You interact with behavior, not code.</em></p>
     </div>
   </div>
-
-  <!-- Demo/Trial/License Boxes -->
   <div class="access-boxes">
     <div class="access-box" style="border-color:#33ff33;">
       <h3>🟢 Demo Video</h3>
@@ -198,6 +246,54 @@
       <h3>🔴 Licensed Access</h3>
       <p>Full access. Electron backend. Support included.</p>
     </div>
+  </div>
+</section>
+
+<!-- Trial / License Section -->
+<section class="trial-license">
+  <h2>🧪 Free 6-Hour Trial</h2>
+  <a href="https://archive.org/download/neuro-xtrial-portable/NeuroXTrialPortable.rar" target="_blank">Download Trial Program</a>
+  <h4>🎓 Trial Version Tutorial</h4>
+  <iframe src="https://archive.org/embed/trial_202510" frameborder="0" allowfullscreen width="100%" height="315"></iframe>
+
+  <h2>🔑 License Version</h2>
+  <a href="https://archive.org/download/neuro-xlicense-portable/NeuroXlicensePortable.rar" target="_blank">Download License Program</a>
+  <h4>🎓 License Version Tutorial</h4>
+  <iframe src="https://archive.org/embed/license_202510" frameborder="0" allowfullscreen width="100%" height="315"></iframe>
+</section>
+
+<!-- Premium Purchase Section -->
+<section class="premium">
+  <h2>💳 Premium Version</h2>
+  <p>💳 Buy 1-month access. Pay in Litecoin (LTC) <strong>1 LTC</strong></p>
+  <ul>
+    <li>Includes full feature set + base bet customization</li>
+    <li>Secure, anti-crack licensing system</li>
+  </ul>
+  <p>After purchase, send your desired base bet + email used for payment to our support email or Telegram.</p>
+  <form id="payForm">
+    <input id="email" type="email" placeholder="Enter your email" required>
+    <button type="submit">Get Payment Link</button>
+  </form>
+  <div id="paymentInfo" style="display:none;">
+    <p><strong>Send Litecoin to:</strong></p>
+    <code id="ltcAddress">Loading...</code>
+    <div><img id="qrImage" src="" width="150"></div>
+    <p>Confirmation will be sent to your email.</p>
+  </div>
+</section>
+
+<!-- Referral Section -->
+<section class="referral">
+  <h2>🌐 Referral Program</h2>
+  <p>Register your email to get your unique referral link:</p>
+  <form id="affiliateForm">
+    <input id="affiliateEmail" type="email" placeholder="Enter your email" required>
+    <button type="submit">Generate Link</button>
+  </form>
+  <input id="affiliateLink" readonly style="margin-top:10px; display:none;">
+  <div id="affiliateResult" style="margin-top:10px; display:none;">
+    <p>Share your referral link to earn commission!</p>
   </div>
 </section>
 
@@ -217,7 +313,6 @@ const letters='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
 const fontSize=16;
 const columns=Math.floor(canvas.width/fontSize);
 const drops=Array(columns).fill(1);
-
 function draw(){
   ctx.fillStyle='rgba(0,0,0,0.05)';
   ctx.fillRect(0,0,canvas.width,canvas.height);
@@ -240,10 +335,8 @@ const textLines = [
   "Here you witness something truly original that has never been copied anywhere.",
   "Enjoy endless profits with the ultra-powerful NeuroX bot!"
 ];
-
 let lineIndex = 0;
 let charIndex = 0;
-
 function typeLineCinematic() {
   if (lineIndex < textLines.length) {
     const currentLine = textLines[lineIndex];
@@ -256,7 +349,7 @@ function typeLineCinematic() {
       el.appendChild(span);
       setTimeout(() => { span.style.opacity = 1; span.style.transform = 'translateY(0)'; }, 20);
       charIndex++;
-      setTimeout(typeLineCinematic, 50 + Math.random() * 50); // random typing speed
+      setTimeout(typeLineCinematic, 50 + Math.random() * 50);
     } else {
       el.appendChild(document.createElement('br'));
       lineIndex++;
@@ -267,7 +360,6 @@ function typeLineCinematic() {
     triggerShatterCinematic();
   }
 }
-
 function triggerShatterCinematic() {
   const spans = Array.from(el.querySelectorAll('span'));
   spans.forEach(span => {
@@ -285,10 +377,7 @@ function triggerShatterCinematic() {
     typeLineCinematic();
   }, 1400);
 }
-
-// start cinematic typewriter
 typeLineCinematic();
-
 
 /* ---------- Audio ---------- */
 const audio=document.getElementById("bgMusic");
@@ -297,6 +386,40 @@ document.body.addEventListener("click",function playOnce(){
   document.body.removeEventListener("click",playOnce);
 });
 function toggleAudio(){ audio.muted=!audio.muted; }
+
+/* ---------- License Purchase ---------- */
+document.getElementById("payForm").addEventListener("submit", async function(e){
+  e.preventDefault();
+  const email=document.getElementById("email").value;
+  const button=this.querySelector("button");
+  const original=button.innerText;
+  button.disabled=true; button.innerText="Please wait...";
+  try {
+    const res=await fetch("https://neurobackend.onrender.com/order",{
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({email})
+    });
+    if(res.ok){
+      const data=await res.json();
+      document.getElementById("ltcAddress").innerText=data.address;
+      document.getElementById("qrImage").src=data.qr;
+      document.getElementById("paymentInfo").style.display="block";
+    } else alert("Something went wrong");
+  } catch(err){ alert("Network error"); }
+  finally{ button.disabled=false; button.innerText=original; }
+});
+
+/* ---------- Referral ---------- */
+document.getElementById("affiliateForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  const email=document.getElementById("affiliateEmail").value.trim();
+  const link=`https://mr-xneuro.github.io/neurobet-demo/?ref=${encodeURIComponent(email)}`;
+  const input=document.getElementById("affiliateLink");
+  input.value=link;
+  input.style.display="block";
+  document.getElementById("affiliateResult").style.display="block";
+});
 </script>
 </body>
 </html>
